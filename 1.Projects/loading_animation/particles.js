@@ -36,8 +36,9 @@ function Particle(x, y) {
 
   this.show = function(){
     stroke(60,255,99);
-		strokeWeight(7);
+		strokeWeight(5);
     ellipse(this.x, this.y, 30);
+
     fill(255,0,255);
     beginShape();
     for(var i = 0; i < this.history.length; i++){

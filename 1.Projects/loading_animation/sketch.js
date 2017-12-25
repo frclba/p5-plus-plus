@@ -9,7 +9,7 @@ function setup() {
 
 let particles = [];
 
-function mousePressed(){
+function mouseDragged(){
 	particles.push(new Particle(mouseX, mouseY));
 }
 
@@ -19,8 +19,6 @@ function draw() {
 	for(let i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].show();
-		translate(30, 20);
-
 	}
 	printCircles();
 }
