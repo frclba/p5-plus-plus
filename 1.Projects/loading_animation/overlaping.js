@@ -17,7 +17,7 @@ function move(){
 }
 
 function controlCircles(){
-  while(circles.length < 60){
+  while(circles.length < 333){
      circle = new Circle(random(windowWidth), random(windowHeight));
 
     checkOverlaping(circle);
