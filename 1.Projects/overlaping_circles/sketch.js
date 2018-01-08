@@ -1,4 +1,3 @@
-let circles = [];
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);

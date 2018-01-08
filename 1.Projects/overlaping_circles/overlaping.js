@@ -7,7 +7,6 @@ class Circle {
     this.y = y;
     this.r = random(5, 50);
   }
-  
 }
 
 function move(){
@@ -18,7 +17,7 @@ function move(){
 }
 
 function controlCircles(){
-  while(circles.length < 333){
+  while(circles.length < 666){
      circle = new Circle(random(windowWidth), random(windowHeight));
 
     checkOverlaping(circle);

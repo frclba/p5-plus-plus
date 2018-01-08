@@ -4,6 +4,7 @@ var n = 5;
 
 var sliderD;
 var sliderN;
+var angle = 0;
 
 function setup() {
 	createCanvas(800, 600);
@@ -12,13 +13,12 @@ function setup() {
 	sliderN = createSlider(1, 22, 5, 0.5);
 }
 
-var angle = 0;
 
 function draw() {
 	background(90);
 	translate(width/2, height/2);
 	stroke(255);
-	fill(0,1,111);
+	fill(0, 1, 111);
 
 	var offset = 0.333;
 
