@@ -2,8 +2,9 @@
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	var protection = 0;
+	background(90);
 
-	while(circles.length < 500){
+	while(circles.length < 1111){
 		var circle = {
 			x: random(windowWidth),
 			y: random(windowHeight),
