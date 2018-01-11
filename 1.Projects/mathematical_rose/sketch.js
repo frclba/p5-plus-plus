@@ -9,8 +9,8 @@ var angle = 0;
 function setup() {
 	createCanvas(800, 600);
 
-	sliderD = createSlider(1, 22, 5, 0.5);
-	sliderN = createSlider(1, 22, 5, 0.5);
+	sliderD = createSlider(1, 22, 1, 0.5);
+	sliderN = createSlider(1, 22, 1, 0.5);
 }
 
 
@@ -18,14 +18,14 @@ function draw() {
 	background(90);
 	translate(width/2, height/2);
 	stroke(255);
-	fill(0, 1, 111);
+	fill(80, 33, 255);
 
 	var offset = 0.333;
 
-	var x = map(sin(angle), -1, 1, 1, 22);
+//	var x = map(sin(angle), -1, 1, 1, 22);
 
-	sliderN.value(x);
-	sliderD.value(x + 9);
+	sliderN.value();
+	sliderD.value();
 
 	var k = sliderN.value() / sliderD.value() + 0.1;
 

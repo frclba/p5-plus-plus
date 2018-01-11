@@ -11,7 +11,7 @@ var one = function( p ) { // p could be any variable name
 
  p.draw = function() {
 	 p.background(0);
-	 p.fill(255);
+   p.fill(255);
    //x += speed;
    if(x < 0)
     x = p.width;
@@ -28,7 +28,7 @@ var two = function( p ) {
 
  function drawCircle(x, y, radius){
  	p.ellipse(x, y, radius);
-  p.stroke(255);
+  p.stroke(255, 0, 255);
  	if (radius > 1 /2){
  		if (p.random(0, 10) < 20){
  			drawCircle(x, y - radius * 0.5, radius * 0.5);
