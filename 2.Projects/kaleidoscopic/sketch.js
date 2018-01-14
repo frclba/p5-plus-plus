@@ -6,8 +6,8 @@ var see=false;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   pas = TWO_PI/n;
-  background(0);
-  stroke(99, 11, 11);
+  background(90);
+  stroke(255, 0, 255);
   strokeWeight(9);
 }
 
