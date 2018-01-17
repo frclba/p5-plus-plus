@@ -7,7 +7,7 @@ var sliderN;
 var angle = 0;
 
 function setup() {
-	createCanvas(800, 600);
+	createCanvas(600, 600);
 
 	sliderD = createSlider(1, 22, 1, 0.5);
 	sliderN = createSlider(1, 22, 1, 0.5);
@@ -15,7 +15,7 @@ function setup() {
 
 
 function draw() {
-	background(90);
+	background(0);
 	translate(width/2, height/2);
 	stroke(255);
 	fill(80, 33, 255);
