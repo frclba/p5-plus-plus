@@ -16,7 +16,6 @@ function setup() {
 function draw() {
   background(255);
 
-
   // Add the current speed to the position.
   x += xspeed;
   y += yspeed;
