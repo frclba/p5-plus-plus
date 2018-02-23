@@ -1,6 +1,6 @@
 function Mover(speedX, speedY) {
   this.position = new p5.Vector(random(width), random(height));
-  this.velocity = new p5.Vector(random(-4, 4), random(-3, 3));
+  this.velocity = new p5.Vector(random(-5, 5), random(-1, 1));
   this.acceleration = new p5.Vector(-0.001, 0.01);
   this.topspeed = 10;
 
@@ -12,7 +12,7 @@ function Mover(speedX, speedY) {
 
   this.display = function() {
     // Display circle at x position
-    stroke(255);
+    stroke(0);
     strokeWeight(2);
 
     // fill(this.position.x, 0, this.position.y);
@@ -21,14 +21,12 @@ function Mover(speedX, speedY) {
   }
 
   this.checkEdges = function(){
-
     if (this.position.x > width) {
       this.position.x = 0;
     }
     else if (this.position.x < 0) {
       this.position.x = width;
     }
-
     if (this.position.y > height) {
       this.position.y = 0;
     }

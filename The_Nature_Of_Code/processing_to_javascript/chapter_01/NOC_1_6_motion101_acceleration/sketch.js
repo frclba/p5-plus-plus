@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-  background(99);
+  background(0);
 
   for(var i = 0; i < balls.length; i++){
     balls[i].update();
