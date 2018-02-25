@@ -24,10 +24,10 @@ function draw() {
   // Start the tree from the bottom of the screen
   translate(width/2, height);
   // Move alogn through noise
-  yoff += 0.005;
+  yoff += 0.00333;
   randomSeed(seed);
   // Start the recursive branching!
-  branch(60, 0);
+  branch(90, 0);
 }
 
 
@@ -53,7 +53,7 @@ function branch(h, xoff) {
   // Move along through noise space
   xoff += 0.1;
 
-  if (h > 4) {
+  if (h > 2) {
     // Random number of branches
     let n = floor(random(0, 5));
     for (let i = 0; i < n; i++) {
