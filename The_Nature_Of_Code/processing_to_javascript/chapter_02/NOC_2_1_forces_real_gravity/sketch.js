@@ -1,26 +1,26 @@
-var particles = [];
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let movers = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-
-  for(var i = 0; i < 20; i++){
-  var mover = new Mover(random(1,4), 0, 0);
-  particles.push(mover);
+  createCanvas(640, 360);
+  for (let i = 0; i < 20; i++) {
+    movers[i] = new Mover(random(1, 4), 0, 0);
   }
 }
 
 function draw() {
-  background(0);
+  background(51);
 
-  for(var i = 0; i < particles.lenght; i++){
-    var wind = new p5.Vector(0.01, 0);
-    var gravity = new p5.Vector(0, 0.1 * particles[i].mass);
-
-    particles[i].applyForce(wind);
-    particles[i].applyForce(gravity);
-
-    particles[i].update();
-    particles[i].display();
-    particles[i].checkEdges();
+  for (let i = 0; i < movers.length; i++) {
+    let wind = createVector(0.01, 0);
+    let gravity = createVector(0, 0.1 * movers[i].mass);
+    movers[i].applyForce(wind);
+    movers[i].applyForce(gravity);
+    movers[i].update();
+    movers[i].display();
+    movers[i].checkEdges();
   }
 }

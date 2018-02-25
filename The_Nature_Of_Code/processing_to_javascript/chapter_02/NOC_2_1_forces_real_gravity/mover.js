@@ -1,41 +1,45 @@
-function Mover(m, x, y){
-  this.position = new p5.Vector(x, y);
-  this.velocity = new p5.Vector(0, 0);
-  this.acceleration = new p5.Vector (0, 0);
-  this.mass = m;
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
 
-  this.applyForce = function(force){
-    var f = p5.Vector.div(force, this.mass);
+class Mover {
+  constructor(m, x, y) {
+    this.mass = m;
+    this.position = createVector(x, y);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
+  }
+
+  applyForce(force) {
+    let f = p5.Vector.div(force, this.mass);
     this.acceleration.add(f);
   }
 
-  this.update = function(){
+  update() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
   }
 
-  this.display = function(){
+  display() {
     stroke(0);
     strokeWeight(2);
-    fill(0, 127);
-    ellipse(this.position.x, this.position.y, this.mass*16, this.mass*16);
+    fill(255, 127);
+    ellipse(this.position.x, this.position.y, this.mass * 32, this.mass * 32);
   }
 
-  this.checkEdges = function(){
-
+  checkEdges() {
     if (this.position.x > width) {
       this.position.x = width;
       this.velocity.x *= -1;
-    }
-    else if (this.position.x < 0) {
+    } else if (this.position.x < 0) {
       this.velocity.x *= -1;
       this.position.x = 0;
     }
-
     if (this.position.y > height) {
       this.velocity.y *= -1;
       this.position.y = height;
     }
   }
+
 }
