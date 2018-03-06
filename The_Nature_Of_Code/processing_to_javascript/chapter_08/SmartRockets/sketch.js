@@ -47,9 +47,9 @@ function draw() {
   background(101);
 
   // Draw the start and target positions
-  fill(0);
-  stroke(0);
-  ellipse(target.x,target.y,24,24);
+  fill(255, 60, 99);
+  stroke(255);
+  ellipse(target.x,target.y,60,60);
 
 
   // If the generation hasn't ended yet
