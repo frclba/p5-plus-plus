@@ -6,8 +6,8 @@ var see=false;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   pas = TWO_PI/n;
-  background(255);
-  stroke(0, 0, 0);
+  background(0);
+  stroke(51);
   strokeWeight(9);
 }
 
@@ -17,7 +17,7 @@ function draw() {
     var d = dist(mouseX, mouseY, width/2, height/2);
     if (oldAngle != -100) {
        translate(width/2, height/2);
-      for (var a=0; a<TWO_PI; a+=pas) {
+      for (var a=0; a<TWO_PI; a += pas) {
         line(cos(oldAngle+a)*oldDist, sin(oldAngle+a)*oldDist, cos(an+a)*d, sin(an+a)*d);
       }
     }
