@@ -8,14 +8,15 @@ var velocityY = [];
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	noStroke();
-	fill(255, 255, 192);
+	stroke(255);
+	strokeWeight(1);
+	fill(255, 20, 147);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-	background(32);
+	background(111);
 
 	for (var particleA = 0; particleA < mass.length; particleA++) {
 		var accelerationX = 0, accelerationY = 0;
