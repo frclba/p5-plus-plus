@@ -7,7 +7,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   pas = TWO_PI/n;
   background(0);
-  stroke(51);
+  stroke(204, 204, 255);
   strokeWeight(9);
 }
 
