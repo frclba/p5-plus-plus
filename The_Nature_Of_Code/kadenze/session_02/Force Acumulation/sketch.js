@@ -1,18 +1,25 @@
+var particles = [];
+
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	particle = new Particle();
+	for(var i = 0; i <= 2; i++){
+		particles[i] = new Particle(100*(i+1), 100, i);
+	}
 }
 
 function draw() {
 	background(51);
-	var gravity = createVector(0, 0.2);
 	var wind = createVector(0.5, 0);
 
-	particle.applyForce(gravity);
-	if(mouseIsPressed)
-		particle.applyForce(wind);
+	for(var i = 0; i <= 2; i++){
+		var gravity = createVector(0, 0.2*particles[i].mass);
+		particles[i].applyForce(gravity);
 
-	particle.update();
-	particle.edges();
-	particle.show();
+		if(mouseIsPressed)
+			particles[i].applyForce(wind);
+
+		particles[i].update();
+		particles[i].edges();
+		particles[i].show();
+	}
 }
