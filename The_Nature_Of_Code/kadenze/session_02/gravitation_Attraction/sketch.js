@@ -1,6 +1,7 @@
 //TODO draw it's trail
 
 var particles = [];
+var force = [];
 var attractor;
 
 function setup() {
@@ -15,15 +16,15 @@ function draw() {
 	background(51);
 
 	for(var i = 0; i <= 2; i++){
-		var force = attractor.calculateAttraction(particles[i]);
-		particles[i].applyForce(force);
+		force[i] = attractor.calculateAttraction(particles[i]);
+		particles[i].applyForce(force[i]);
 
-		if(mouseIsPressed)
-			// particles[i].applyForce(wind);
+		// if(mouseIsPressed)
+		// 	// particles[i].applyForce(wind);
 
 		particles[i].update();
 		particles[i].show();
-
+		particles[i].checkEdges();
 		attractor.show();
 	}
 }
