@@ -34,7 +34,7 @@ class Mover {
     }
     if (this.position.y > height) {
       this.velocity.y *= -1;
-this.position.y = height;
+      this.position.y = height;
     }
   }
 }

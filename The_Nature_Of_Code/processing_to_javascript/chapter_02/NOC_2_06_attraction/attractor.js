@@ -13,6 +13,7 @@ class Attractor {
     this.dragging = false;
     this.rollover = false;
   }
+  
   calculateAttraction(m) {
     // Calculate direction of force
     let force = p5.Vector.sub(this.position, m.position);
