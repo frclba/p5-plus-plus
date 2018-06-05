@@ -4,7 +4,7 @@ function Vehicle(x, y, n){
   this.acc = createVector(0, 0);
   this.maxspeed = 7;
   this.maxforce = 10;
-  this.r = 20;
+  this.r = 10;
 
   this.arrive = function(target){
     let desired = p5.Vector.sub(target, this.pos);
@@ -49,6 +49,11 @@ function Vehicle(x, y, n){
       vertex(-this.r, this.r * 2);
       vertex(this.r, this.r * 2);
     endShape(CLOSE);
+
+    fill(255, 77, 99);
+    stroke(0);
+    ellipse(0, -this.r*4, this.r*1.5);
     pop();
+
   }
 }
