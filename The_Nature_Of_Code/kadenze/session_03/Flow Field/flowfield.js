@@ -50,8 +50,8 @@ function FlowField(r){
       stroke(200, 100);
       rotate(v.heading());
       var len = v.mag() * scayl;
-      line(0,0,len,0);
-      // line(len,0,len-arrowsize,+arrowsize/2);
+      // line(0,0,len,0);
+      line(len,0,len-arrowsize,+arrowsize/2);
       // line(len,0,len-arrowsize,-arrowsize/2);
     pop();
   };

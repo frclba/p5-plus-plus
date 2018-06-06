@@ -7,7 +7,7 @@ function setup(){
   createCanvas(640, 360);
   flowfield = new FlowField(20)
 
-  for(let i = 0; i < 30; i++){
+  for(let i = 0; i < 33; i++){
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 }
