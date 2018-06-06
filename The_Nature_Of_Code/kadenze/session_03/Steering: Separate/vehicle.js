@@ -2,8 +2,13 @@ function Vehicle(x, y, n){
   this.pos = createVector(x, y);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
-  this.maxspeed = 10;
-  this.maxforce = 3;
+  this.r = n;
+  this.maxspeed = 22;
+  this.maxforce = 0.2;
+
+  this.applyForce = function(force){
+    this.acc.add(force);
+  }
 
   this.separate = function(vehicles){
     let desiredSeparation = 32;
@@ -32,16 +37,7 @@ function Vehicle(x, y, n){
     }
   }
 
-  this.applyForce = function(force){
-    this.acc.add(force);
-  }
 
-  this.borders = function(){
-    // if (this.pos.x < 0 || this.pos.x > width)
-    //   this.vel *= -1;
-    // if (this.pos.y < 0 || this.pos.y > height)
-    //   this.vel *= -1;
-  };
 
   this.update = function(){
     this.vel.add(this.acc);
@@ -49,6 +45,14 @@ function Vehicle(x, y, n){
     this.pos.add(this.vel);
     this.acc.set(0.0);
   }
+
+  this.borders = function() {
+    if (this.pos.x < -this.r) this.pos.x =  width+this.r;
+    if (this.pos.y < -this.r) this.pos.y = height+this.r;
+    if (this.pos.x >  width+this.r) this.pos.x = -this.r;
+    if (this.pos.y > height+this.r) this.pos.y = -this.r;
+  }
+
   this.display = function(){
     fill(255, 99, 77);
     strokeWeight(3);

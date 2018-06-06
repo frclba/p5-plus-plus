@@ -3,7 +3,7 @@ let vehicles = [];
 function setup(){
   createCanvas(windowWidth, windowHeight);
 
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 99; i++) {
    vehicles.push(new Vehicle(random(width), random(height), 33));
   }
 }
