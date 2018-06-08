@@ -10,7 +10,7 @@ function Boid(x, y) {
   this.acceleration = createVector(0, 0);
   this.velocity = createVector(random(-1, 1), random(-1, 1));
   this.position = createVector(x, y);
-  this.r = 3.0;
+  this.r = 6.0;
   this.maxspeed = 3; // Maximum speed
   this.maxforce = 0.05; // Maximum steering force
 
@@ -31,12 +31,12 @@ function Boid(x, y) {
     var sep = this.separate(boids); // Separation
     var ali = this.align(boids);    // Alignment
     var coh = this.cohesion(boids); // Cohesion
-    
+
     // Arbitrarily weight these forces
     sep.mult(separationSlider.value());
     ali.mult(alignmentSlider.value());
     coh.mult(cohesionSlider.value());
-    
+
     // Add the force vectors to acceleration
     this.applyForce(sep);
     this.applyForce(ali);
@@ -69,17 +69,25 @@ function Boid(x, y) {
 
   this.render = function() {
     // Draw a triangle rotated in the direction of velocity
-    var theta = this.velocity.heading() + radians(90);
-    fill(127);
-    stroke(200);
+    let theta = this.velocity.heading() + PI / 2;
+    fill(255, 99, 77);
+    strokeWeight(2);
+    stroke(255);
+
     push();
     translate(this.position.x, this.position.y);
     rotate(theta);
+    line(0, 0, 0, this.r*5);
+
     beginShape();
-    vertex(0, -this.r * 2);
-    vertex(-this.r, this.r * 2);
-    vertex(this.r, this.r * 2);
+      vertex(0, -this.r * 2);
+      vertex(-this.r, this.r * 2);
+      vertex(this.r, this.r * 2);
     endShape(CLOSE);
+
+    fill(255, 77, 99);
+    stroke(0);
+    ellipse(0, -this.r*4, this.r*1.5);
     pop();
   };
 
