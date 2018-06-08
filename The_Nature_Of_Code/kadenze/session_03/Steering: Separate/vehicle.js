@@ -3,7 +3,7 @@ function Vehicle(x, y, n){
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
   this.r = n;
-  this.maxspeed = 22;
+  this.maxspeed = 10;
   this.maxforce = 0.2;
 
   this.applyForce = function(force){
@@ -11,7 +11,7 @@ function Vehicle(x, y, n){
   }
 
   this.separate = function(vehicles){
-    let desiredSeparation = 32;
+    let desiredSeparation = 33;
     let sum = createVector(0, 0);
     let count = 0;
 
