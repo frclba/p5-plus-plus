@@ -1,25 +1,35 @@
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	newTree();
 }
 
 function draw() {
-	drawElipse(width/2, height/2, 200);
+	background(51);
+	angle = map(mouseX, 0, width, 0, PI/2);
+	translate(width/2, height);
+	stroke(255);
+	branch(120, 1);
 }
 
 
 
-function newTree(x, y, d){
-	background(51);
-	stroke(255);
-	push();
-	ellipse(x, y, d);
-	ellipse(x+400, y/2, d*2);
-	ellipse(x/2, y/2, d*2);
+function branch(len, generation){
+	strokeWeight(map(generation, 1, 10, 4, 1));
+	line(0, 0, 0, -len);
+	translate(0, -len);
 
-	if(d > 10){
-		drawElipse(x + d, y, d * 0.333);
-		drawElipse(x - d, y, d * 0.333);
+	len *= 0.666;
+
+	generation++;
+
+	if(len > 2){
+		push();
+			rotate(angle);
+			branch(len, generation);
+		pop();
+
+		push();
+			rotate(-angle);
+			branch(len, generation);
+		pop();
 	}
-
 }
