@@ -8,19 +8,17 @@ class Drop {
 
   fall(){
     this.y += this.yspeed;
+
+    if( this.isOffScreeen()){
+      this.x = random(0, width);
+      this.y = random(-100, -10);
+    }
   }
 
   show(){
     stroke(138, 43, 226);
     strokeWeight(3);
     line(this.x, this.y, this.x, this.y + 10);
-  }
-
-  reset(){
-    if( this.isOffScreeen()){
-      this.x = random(0, width);
-      this.y = random(-100, -10);
-    }
   }
 
   isOffScreeen(){
