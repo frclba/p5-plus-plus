@@ -19,7 +19,7 @@ class Ship {
     push();
       translate(this.pos.x, this.pos.y);
       rotate(this.heading + PI/2);
-      noFill();
+      fill(0);
       stroke(255, 255, 0);
       triangle(-this.r, this.r, this.r, this.r, 0, -this.r);
     pop();
@@ -68,5 +68,9 @@ class Ship {
     else if(this.pos.y < - this.r){
       this.pos.y = height + this.r;
     }
+  }
+  hits(asteroid){
+    var distance = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
+    return (distance < this.r + asteroid.r);
   }
 }
