@@ -1,16 +1,11 @@
 class Asteroid {
   constructor(pos, r){
-    if(pos){
-      this.pos = pos.copy();
-    } else{
-      this.pos = createVector(random(width), random(height));
-    }
-    if(r){
-      this.r = r * 0.5;
-    }
-    else{
-      this.r = random(15, 50);
-    }
+    let new_pos;
+    if(pos)
+      new_pos = pos.copy();
+
+    this.pos = new_pos || createVector(random(width), random(height));
+    this.r = r * 0.5 || random(15, 50);
 
     this.totalOfSides = floor(random(5,15));
     this.velocity = p5.Vector.random2D();
