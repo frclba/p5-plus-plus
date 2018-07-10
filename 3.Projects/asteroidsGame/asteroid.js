@@ -1,19 +1,27 @@
 class Asteroid {
-  constructor(pos, r){
-    let new_pos;
-    if(pos)
-      new_pos = pos.copy();
+  constructor(pos, r, size){
+    if(pos == null){
+      this.pos = createVector(random(width), random(height));
+    }
 
-    this.pos = new_pos || createVector(random(width), random(height));
-    this.r = r * 0.5 || random(15, 50);
+    this.r = r * 0.5 || random(40, 60);
 
-    this.totalOfSides = floor(random(5,15));
     this.velocity = p5.Vector.random2D();
+    this.totalOfSides = floor(random(5, 15));
+
+    this.size = size;
+    switch(size) {
+      case 1:
+        this.vel.mult(1.5); break;
+      case 0:
+        this.vel.mult(2); break;
+    }
 
     this.offset = [];
     for(let i = 0; i < this.totalOfSides; i++){
-      this.offset[i] = random(-this.r, this.r);
+      this.offset[i] = random(-this.r * 0.2, this.r * 0.5);
     }
+
   }
 
   controlAsteroids(){
@@ -62,6 +70,10 @@ class Asteroid {
       this.pos.y = height + this.r;
     }
   }
+  playSoundEffect(soundArray){
+    soundArray[floor(random(0, soundArray.length))].play();
+  }
+
   breakUp(){
     let newAsteroids = [];
     newAsteroids[0] = new Asteroid(this.pos, this.r);

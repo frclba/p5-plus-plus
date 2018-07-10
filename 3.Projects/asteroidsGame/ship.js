@@ -1,6 +1,10 @@
 class Ship {
   constructor(x, y){
     this.pos = createVector(x, y);
+    this.isDestroyed = false;
+    this.destroyFrames = 600;
+    this.brokenParts = [];
+
     this.r = 20;
     this.heading = 0;
     this.rotation = 0;
@@ -69,8 +73,20 @@ class Ship {
       this.pos.y = height + this.r;
     }
   }
+
   hits(asteroid){
     var distance = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
     return (distance < this.r + asteroid.r);
+  }
+  destroy(){
+    this.isDestroyed = true;
+    for(let i = 0; i < 4; i++){
+      this.brokenParts[i] = {
+        pos: this.pos.copy(),
+        vel: p5.Vector.random2D(),
+        heading: random(0, 360),
+        rot: random(-0.07, 0.07)
+      };
+    }
   }
 }
