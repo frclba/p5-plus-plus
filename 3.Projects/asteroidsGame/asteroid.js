@@ -1,8 +1,11 @@
 class Asteroid {
   constructor(pos, r, size){
-    if(pos == null){
-      this.pos = createVector(random(width), random(height));
+    let new_pos;
+    if(pos){
+      new_pos = pos.copy();
     }
+
+    this.pos = new_pos || createVector(random(width), random(height));
 
     this.r = r * 0.5 || random(40, 60);
 
@@ -12,9 +15,9 @@ class Asteroid {
     this.size = size;
     switch(size) {
       case 1:
-        this.vel.mult(1.5); break;
+        this.velocity.mult(1.5); break;
       case 0:
-        this.vel.mult(2); break;
+        this.velocity.mult(2); break;
     }
 
     this.offset = [];
@@ -30,9 +33,17 @@ class Asteroid {
 		this.edges();
   }
 
+  breakUp(){
+    let newAsteroids = [];
+    newAsteroids[0] = new Asteroid(this.pos, this.r, 1);
+    newAsteroids[1] = new Asteroid(this.pos, this.r, 2);
+    return newAsteroids;
+  }
+
   update(){
     this.pos.add(this.velocity);
   }
+
 
   render(){
     push();
@@ -71,13 +82,9 @@ class Asteroid {
     }
   }
   playSoundEffect(soundArray){
+    console.log(soundArray);
     soundArray[floor(random(0, soundArray.length))].play();
   }
 
-  breakUp(){
-    let newAsteroids = [];
-    newAsteroids[0] = new Asteroid(this.pos, this.r);
-    newAsteroids[1] = new Asteroid(this.pos, this.r);
-    return newAsteroids;
-  }
+
 }

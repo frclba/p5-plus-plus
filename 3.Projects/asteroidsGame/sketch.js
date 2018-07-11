@@ -4,7 +4,7 @@ let lasers = [];
 let laserSoundEffects = [];
 let explosionSoundEffects = [];
 let dust = [];
-
+let lives = 3;
 let canPlay = true;
 let score = 0;
 
@@ -46,8 +46,7 @@ function draw() {
 	for (let i = 0; i < asteroids.length; i++){
 		if(ship.hits(asteroids[i]) && canPlay){
 			canPlay = false;
-			ship.destroy();
-			input.reset();
+			//ship.destroy();
 			setTimeout(reborn, 3000);
 		}
 		asteroids[i].controlAsteroids();
@@ -62,15 +61,17 @@ function draw() {
 		}
 		for (let j = asteroids.length-1; j >= 0; j--){
 			if(lasers[i].hits(asteroids[j])){
-				asteroids[j].playSoundEffect(explosionSoundEffects);
-				score += points[asteroids[j].size];
+				//asteroids[j].playSoundEffect(explosionSoundEffects);
+				// score += points[asteroids[j].size];
 
-				let dustVel = p5.Vector.add(lasers[i].velocity.mult(0.2), asteroids[j].velocity);
+				let dustVel = p5.Vector.add(lasers[i].vel.mult(0.2), asteroids[j].velocity);
 				let dustNum = (asteroids[j].size + 1) * 5;
-				addDust(asteroids[j].pos, dustVel, dustNum);
+				//addDust(asteroids[j].pos, dustVel, dustNum);
 
-				let newAsteroids = asteroids[j].breakUp();
-				asteroids = asteroids.concat(newAsteroids);
+				if(asteroids[j].r > 15){
+					let newAsteroids = asteroids[j].breakUp();
+					asteroids = asteroids.concat(newAsteroids);
+				}
 				asteroids.splice(j, 1);
 				lasers.splice(i, 1);
 				break;
@@ -82,11 +83,6 @@ function draw() {
 	ship.controlShip();
 }
 
-function spawnAsteroids() {
-	for(let i = 0; i < 20; i++){
-		asteroids.push(new Asteroid(null, null, 2));
-	}
-}
 
 function keyPressed(){
 	if(key == ' '){
