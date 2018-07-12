@@ -16,9 +16,12 @@ class Firework {
       }
     }
 
-    for (let i = 0; i < this.particles.length; i++){
+    for (let i = this.particles.length - 1; i >= 0 ; i--){
       this.particles[i].applyForce(gravity);
       this.particles[i].update();
+      if(this.particles[i].done()){
+        this.particles.splice(i, 1);
+      }
     }
   }
 
@@ -36,5 +39,8 @@ class Firework {
     for (let i = 0; i < this.particles.length; i++){
       this.particles[i].render();
     }
+  }
+  done(){
+    return (this.exploded && this.particles.length == 0)
   }
 }
