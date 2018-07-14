@@ -9,8 +9,8 @@ function setup(){
 }
 
 function draw(){
-  background(0);
-
+  background(255);
+`//TODO -> create force when divided`
   for(let i = 0; i < cell_array.length; i++){
     cell_array[i].move();
     cell_array[i].show();
