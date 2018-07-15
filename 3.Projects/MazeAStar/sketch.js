@@ -121,14 +121,12 @@ function render(){
       grid[i][j].show(color(255));
     }
   }
-  // Show Blocked Visited Path
-  // for (var i = 0; i < closedSet.length; i++) {
-  //   closedSet[i].show(color(255, 0, 0));
-  // }
-  // Show Possible Path
-  // for (var i = 0; i < openSet.length; i++) {
-  //   openSet[i].show(color(0, 255, 0));
-  // }
+  for (var i = 0; i < closedSet.length; i++) {
+    closedSet[i].show(color(255, 0, 0));
+  }
+  for (var i = 0; i < openSet.length; i++) {
+    openSet[i].show(color(0, 255, 0));
+  }
   // Show Current best path
   // for (var i = 0; i < path.length; i++) {
   //   path[i].show(color(0, 0, 255));
@@ -136,7 +134,7 @@ function render(){
 
   //Show  Current Best path in line
   noFill();
-  stroke(255, 0, 200);
+  stroke(0, 0, 200);
   strokeWeight(w / 2);
   beginShape();
   for (var i = 0; i < path.length; i++) {

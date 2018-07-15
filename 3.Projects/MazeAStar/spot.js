@@ -11,7 +11,6 @@ function Spot(i, j) {
   if (random(1) < 0.3) {
     this.wall = true;
   }
-
   this.show = function(col) {
     fill(col);
     if (this.wall) {
@@ -19,7 +18,7 @@ function Spot(i, j) {
       noStroke();
       ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
     }
-    // rect(this.i * w, this.j * h, w - 1, h - 1);
+    rect(this.i * w, this.j * h, w - 1, h - 1);
   }
 
   this.addNeighbors = function(grid) {
@@ -37,9 +36,9 @@ function Spot(i, j) {
     if (j > 0) {
       this.neighbors.push(grid[i][j - 1]);
     }
-    if (i > 0 && j > 0) {
-      this.neighbors.push(grid[i - 1][j - 1]);
-    }
+    // if (i > 0 && j > 0) {
+    //   this.neighbors.push(grid[i - 1][j - 1]);
+    // }
     // if (i < cols - 1 && j > 0) {
     //   this.neighbors.push(grid[i + 1][j - 1]);
     // }
