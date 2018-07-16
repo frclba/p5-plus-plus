@@ -3,7 +3,7 @@ var blobs = []
 function setup() {
     createCanvas(400, 200);
     colorMode(HSB);
-    for(i=0; i<6; i++) 
+    for(i=0; i<6; i++)
       blobs.push(new Blob(random(0, width), random(0, height)));
 }
 
