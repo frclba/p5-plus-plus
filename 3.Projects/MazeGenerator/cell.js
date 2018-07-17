@@ -2,7 +2,8 @@ class Cell {
   constructor(i, j){
     this.i = i;
     this.j = j;
-    this.walls = [true, true, true, true];
+    this.walls = {"top": true, "right": true,
+      "bottom": true, "left": true};
     this.visited = false;
   }
 
@@ -51,22 +52,31 @@ class Cell {
     let y = this.j * w;
 
     stroke(255);
-    if(this.walls[0]){
+    if(this.walls["top"]){
       line(x, y, x+w, y);
     }
-    if(this.walls[1]){
+    if(this.walls["right"]){
       line(x+w, y, x+w, y+w);
     }
-    if(this.walls[2]){
+    if(this.walls["bottom"]){
       line(x+w, y+w, x, y+w);
     }
-    if(this.walls[3]){
+    if(this.walls["left"]){
       line(x, y+w, x, y);
     }
 
     if(this.visited){
+      noStroke();
       fill(255, 0, 255, 100);
       rect(x, y, w, w);
     }
+  }
+
+  highlight(){
+    let x = this.i * w;
+    let y = this.j * w;
+    noStroke();
+    fill(0,0,255,100);
+    rect(x, y, w, w);
   }
 }
