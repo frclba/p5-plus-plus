@@ -13,7 +13,7 @@ function setup(){
 function draw(){
   background(51);
 
-  let gravity = createVector(0, 2);
+  let gravity = createVector(0, 1);
   ball.applyForce(gravity);
 
   spring.connect(ball);

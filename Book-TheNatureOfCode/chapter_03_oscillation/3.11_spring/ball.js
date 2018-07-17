@@ -5,8 +5,8 @@ class Ball {
     this.velocity = createVector();
     this.acceleration = createVector();
 
-    this.mass = 24;
-    this.damping = 0.99;
+    this.mass = 20;
+    this.damping = 0.98;
 
     this.dragOffset = createVector();
     this.isDragging = false;

@@ -2,8 +2,8 @@ class Spring {
 
   constructor(x, y, len){
     this.anchor = createVector(x, y);
-    this.restLength = 1;
-    this.k = 0.2;
+    this.restLength = len;
+    this.k = 0.3;
   }
 
 
