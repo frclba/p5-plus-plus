@@ -1,51 +1,65 @@
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
+let axiom = "F";
+let sentence = axiom;
+let angle;
+let size = 100;
 
-// L-System
-// Just demonstrating working with L-System strings
-// No drawing
-
-// Start with 'A'
-var current = 'A';
-// Number of  generations
-var count = 0;
-
-var instructions;
-var show;
-
-var results = '';
-
-function setup() {
-  instructions = createP('<a href=\'#\'>Click the mouse to generate.</a>');
-  instructions.position(50,50);
-  instructions.class('clickable');
-  instructions.mousePressed(generate);
-
-  results += 'Generation ' + count + ': ' + current + '<br>';
-  show = createP(results);
-  show.position(50,100);
+let rules = {
+  a: "F",
+  b: "FF+[+F-F-F]-[-F+F+F]"
 }
 
-function generate() {
-  // A new StringBuffer for the next generation
-  var next = '';
+function setup() {
+  createCanvas(400, 400);
+  angle = radians(25);
+  background(51);
+  turtle();
 
-  // Look through the current String to replace according to L-System rules
-  for (var i = 0; i < current.length; i++) {
-    var c = current.charAt(i);
-    if (c === 'A') {
-      // If we find A replace with AB
-      next += 'AB';
-    }  else if (c === 'B') {
-      // If we find B replace with A
-      next += 'A';
+  let button = createButton("generate");
+  button.mousePressed(generate);
+}
+
+function generate(){
+  size *= 0.5;
+  let nextSentence = "";
+  for(let i = 0; i < sentence.length; i++ ){
+    let current = sentence.charAt(i);
+    let found = false;
+
+    if(current == rules.a) {
+      found = true;
+      nextSentence += rules.b;
+    }
+
+    if(!found){
+      nextSentence += current;
     }
   }
-  // The current String is now the next one
-  current = next;
-  count++;
-  // Print to message console
-  results += 'Generation ' + count + ': ' + current + '<br>';
-  show.html(results);
+  sentence = nextSentence;
+  turtle();
+}
+
+function turtle(){
+  resetMatrix();
+  translate(width/2, height);
+  stroke(255, 100);
+
+  for(let i = 0; i < sentence.length; i++){
+    let current = sentence.charAt(i);
+    if(current == "F"){
+      line(0,0,0, -size);
+      translate(0, -size);
+    }
+    else if(current == "+"){
+      rotate(angle);
+    }
+    else if(current == "-"){
+      rotate(-angle);
+    }
+    else if(current == "["){
+      push();
+    }
+    else if (current == "]") {
+      pop();
+    }
+  }
 }
