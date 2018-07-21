@@ -1,4 +1,4 @@
-let mutationRate = 0.03;
+let mutationRate = 0.3;
 let totalPopulation = 100;
 
 let population;

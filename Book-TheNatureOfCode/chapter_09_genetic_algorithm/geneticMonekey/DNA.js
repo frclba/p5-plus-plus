@@ -1,10 +1,18 @@
+function newChar(){
+  let newC = floor(random(64, 122));
+  if(newC === 64 ){
+    newC = 32;
+  }
+  return String.fromCharCode(newC);
+}
+
 class DNA {
   constructor(num) {
     this.genes = [];
     this.fitness = 0;
 
     for(let i = 0; i < num; i++){
-      this.genes[i] = this.newChar();
+      this.genes[i] = newChar();
     }
   }
 
@@ -40,16 +48,8 @@ class DNA {
   mutate(mutationRate){
     for(let i = 0; i < this.genes.length; i++){
       if(random(1) < mutationRate){
-        this.genes[i] = this.newChar();
+        this.genes[i] = newChar();
       }
     }
-  }
-
-  function newChar(){
-    let newC = floor(random(64, 122));
-    if(newC === 64 ){
-      newC = 32;
-    }
-    return String.fromCharCode(newC);
   }
 }
