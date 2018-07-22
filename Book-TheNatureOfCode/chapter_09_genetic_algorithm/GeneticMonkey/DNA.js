@@ -28,6 +28,7 @@ class DNA {
       }
     }
     this.fitness = score / target.length;
+    this.fitness = pow(this.fitness, 2) + 0.01;
   }
 
   crossover(partner) {

@@ -19,14 +19,14 @@ function setup() {
 	stats.class("stats");
 
 	target = "To be or not to be";
-	popmax = 1000;
+	popmax = 200;
 	mutationRate = 0.01;
 
 	population = new Population(target, mutationRate, popmax);
 }
 
 function draw() {
-	population.naturalSelection();
+
 	population.generate();
 	population.calcFitness();
 

@@ -4,6 +4,7 @@ class Population {
     this.matingPool = [];
     this.generations = 0;
     this.finished = false;
+    this.maxFitness = 0;
 
     this.target = target;
     this.mutationRate = mutation;
@@ -25,36 +26,42 @@ class Population {
   }
 
   naturalSelection(){
-    this.matingPool = [];
-
-    let maxFitness = 0;
-    for(let i = 0; i < this.population.length; i++){
-      if(this.population[i].fitness > maxFitness){
-        maxFitness = this.population[i].fitness;
-      }
-    }
-
-    for(let i = 0; i < this.population.length; i++){
-      let fitness = map(this.population[i].fitness, 0, maxFitness, 0, 1);
-      let monteCarlo = floor(fitness * 100);
-      for(let j = 0; j < monteCarlo; j++){
-        this.matingPool.push(this.population[i]);
-      }
-    }
   }
 
   generate() {
-    // Refill the population with children from the mating pool
-    for (let i = 0; i < this.population.length; i++) {
-      let a = floor(random(this.matingPool.length));
-      let b = floor(random(this.matingPool.length));
-      let partnerA = this.matingPool[a];
-      let partnerB = this.matingPool[b];
-      let child = partnerA.crossover(partnerB);
-      child.mutate(this.mutationRate);
-      this.population[i] = child;
+
+    for(let i = 0; i < this.population.length; i++){
+      if(this.population[i].fitness > this.maxFitness){
+        this.maxFitness = this.population[i].fitness;
+      }
     }
+
+    // Refill the population with children from the mating pool
+    let newPopulation = [];
+    for (let i = 0; i < this.population.length; i++) {
+      let mom = this.acceptReject();
+      let dad = this.acceptReject();
+      let child = mom.crossover(dad);
+      child.mutate(this.mutationRate);
+      newPopulation[i] = child;
+    }
+    this.population = newPopulation;
     this.generations++;
+  }
+
+  acceptReject(){
+    let besafe = 0;
+    while(true){
+      let index = floor(random(this.population.length));
+      let partner = this.population[index];
+      let rand = random(this.maxFitness);
+
+      if(rand < partner.fitness){
+        return partner;
+      }
+      besafe++;
+      if(besafe > 10000){return null;}
+    }
   }
 
   getBest() {
@@ -73,7 +80,7 @@ class Population {
     }
 
     this.best = this.population[index].getPhrase();
-    if (worldrecord === this.perfectScore) {
+    if (worldrecord >= this.perfectScore) {
       this.finished = true;
     }
   }
