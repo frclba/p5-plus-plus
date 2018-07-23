@@ -8,37 +8,32 @@ class Vehicle{
     this.maxspeed = 6;
     this.maxforce = 0.3;
     this.health = 1;
-    this.medRand = 0.01;
+    this.mutationRate = 0.01;
 
     this.dna = [];
-    if(dna === undefined){
-      this.dna[0] = random(-2, 2);
-      this.dna[1] = random(-2, 2);
-      this.dna[2] = random(0, 100);
-      this.dna[3] = random(0, 100);
-    }
-    else{
-      this.dna[0] = dna[0];
-      if(random(1) < this.medRand){
-        this.dna[0] += random(-0.1, 0.1);
-      }
+    this.evolveDna(dna);
+  }
 
-      this.dna[1] = dna[1];
-      if (random(1) < this.medRand) {
-        this.dna[1] += random(-0.1, 0.1);
-      }
+evolveDna(dna){
+  let increment = 0.3;
 
-      this.dna[2] = dna[2];
-      if (random(1) < this.medRand) {
-        this.dna[2] += random(-10, 10);
-      }
+  if(dna === undefined){
+    this.dna[0] = random(-3, 3);
+    this.dna[1] = random(-3, 3);
+    this.dna[2] = random(0, 180);
+    this.dna[3] = random(0, 180);
+  }
+  else{
+    for(let i = 0; i < dna.length; i++){
+      this.dna[i] = dna[i];
+      if(i > 1) increment = 30;
 
-      this.dna[3] = dna[3];
-      if (random(1) < this.medRand) {
-        this.dna[3] += random(-10, 10);
+      if(random(1) < this.mutationRate){
+        this.dna[i] += random(-increment, increment);
       }
     }
   }
+}
 
   eat(list, nutrition, perception){
     let record = Infinity;

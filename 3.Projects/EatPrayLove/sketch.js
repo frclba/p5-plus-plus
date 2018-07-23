@@ -31,7 +31,7 @@ function spawnFoodPoison(){
   if(r < 0.1){
     food.push(createVector(random(width), random(height)));
   }
-  else if(r < 0.01){
+  if(r < 0.03){
     poison.push(createVector(random(width), random(height)));
   }
 }
