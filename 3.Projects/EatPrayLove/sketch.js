@@ -4,12 +4,12 @@ let poison = [];
 let debug;
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
-  for(let i = 0; i < 45; i++){
+  createCanvas(600, 900);
+  for(let i = 0; i < 50; i++){
     vehicles[i] = new Vehicle(random(width), random(height));
   }
 
-  for(let i = 0; i < 40; i++){
+  for(let i = 0; i < 30; i++){
     food.push(createVector(random(width), random(height)));
   }
   for(let i = 0; i < 20; i++){
