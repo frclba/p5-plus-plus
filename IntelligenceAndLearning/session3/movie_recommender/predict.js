@@ -34,13 +34,31 @@ function findNearestNeighbors(user){
     return similarityScores[b.name] - similarityScores[a.name];
   }
 
-  let k = 5;
-  for(let i = 0; i < k; i++){
-    let name = data.users[i].name;
-    let score = nf(similarityScores[name],1, 3);
-    let div = createDiv(name + ': ' + score);
-    resultDivs.push(div);
-    resultP.parent(div);
+  for(let i = 0; i < titles.length; i++){
+    let title = titles[i];
+    if(user[title] == null){
+      let k = 5;
+      let weightedSum = 0;
+      let similaritySum = 0;
+
+      for(let j = 0; j < k; j++){
+        let name = data.users[j].name;
+        let sim = similarityScores[name];
+        let ratings = data.users[j];
+        let rating = ratings[title];
+
+        if(rating != null){
+          weightedSum += rating * sim;
+          similaritySum += sim;
+        }
+      }
+
+      let stars = nf(weightedSum / similaritySum, 1, 2);
+      let div = createDiv(title + ': ' + stars);
+      resultDivs.push(div);
+      div.parent(resultP);
+
+    }
   }
 }
 
