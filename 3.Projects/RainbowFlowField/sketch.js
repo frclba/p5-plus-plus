@@ -1,7 +1,7 @@
 let particles = [];
 let flowField;
 let scale = 10;
-let increment = 0.3;
+let increment = 0.001;
 let cols;
 let rows;
 
@@ -16,7 +16,7 @@ function setup(){
   flowField = new FlowField();
   flowField.drawFlowField();
 
-  for(let i = 0; i < 1000; i++){
+  for(let i = 0; i < 6000; i++){
     particles[i] = new Particle();
   }
 }
