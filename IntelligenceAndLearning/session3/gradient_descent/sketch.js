@@ -9,7 +9,7 @@ function setup(){
 
 function gradientDescent(){
 
-  let learningRate = 0.06;
+  let learningRate = 0.1;
   for (let i = 0; i < data.length; i++){
     let x = data[i].x;
     let y = data[i].y;
@@ -54,7 +54,7 @@ function draw(){
     stroke(255);
     ellipse(x, y, 8, 8);
   }
-  if(data.length > 1){
+  if(data.length >=  1){
     gradientDescent();
     drawLine();
   }
