@@ -37,8 +37,25 @@ function setup(){
   }
 }
 
+function draw(){
+  background(255);
+
+  // Draw the target line
+  showTargetLine();
+
+  // Draw the line based on the current weights
+  showTrainingLine();
+
+  //Draw the points on the fly.
+  showPoints();
+
+  //Train the "Brain"
+  perceptron.train(training[count].input, training[count].output);
+  count = (count + 1) % training.length;
+}
+
 function showTargetLine(){
-  strokeWeight(3);
+  strokeWeight(6);
   stroke(255, 0, 255);
   let x1 = map(xmin, xmin, xmax, 0, width);
   let y1 = map(f(xmin), ymin, ymax, height, 0);
@@ -48,8 +65,9 @@ function showTargetLine(){
 }
 
 function showTrainingLine(){
+  // Formula is weights[0]*x + weights[1]*y + weights[2] = 0
   stroke(0);
-  strokeWeight(2);
+  strokeWeight(6);
   let weights = perceptron.getWeights();
   let x1 = xmin;
   let y1 = (-weights[2] - weights[0] * x1) / weights[1];
@@ -63,20 +81,7 @@ function showTrainingLine(){
   line(x1, y1, x2, y2);
 }
 
-
-function draw(){
-  background(255);
-
-   // Draw the target line
-  showTargetLine();
-
-   // Draw the line based on the current weights
-  // Formula is weights[0]*x + weights[1]*y + weights[2] = 0
-  showTrainingLine();
-
-  perceptron.train(training[count].input, training[count].output);
-  count = (count + 1) % training.length;
-
+function showPoints(){
   for(let i = 0; i < count; i++){
     stroke(0);
     strokeWeight(1);
