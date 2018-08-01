@@ -93,19 +93,19 @@ class Matrix {
     }
   }
 
-  map(funct){
+  map(func){
     for(let i = 0; i < this.rows; i++){
       for(let j = 0; j < this.cols; j++){
         let val = this.data[i][j];
-        this.data[i][j] = funct(val, i, j);
+        this.data[i][j] = func(val, i, j);
       }
     }
     return this;
   }
 
-  static map(matrix, funct){
+  static map(matrix, func){
     return new Matrix(matrix.rows, matrix.cols)
-      .map((e, i, j) => funct(matrix.data[i][j], i, j));
+      .map((e, i, j) => func(matrix.data[i][j], i, j));
   }
 
   print(){
