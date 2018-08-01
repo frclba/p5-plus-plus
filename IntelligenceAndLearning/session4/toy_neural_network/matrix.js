@@ -2,6 +2,7 @@
 // Linear algebra
 
 // let m = new Matrix(3, 2);
+
 class Matrix {
   constructor(rows, cols){
     this.rows = rows;
@@ -99,7 +100,7 @@ class Matrix {
         this.data[i][j] = funct(val, i, j);
       }
     }
-    return this.
+    return this;
   }
 
   static map(matrix, funct){
