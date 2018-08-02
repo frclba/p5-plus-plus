@@ -29,7 +29,7 @@ function setup() {
 function draw() {
   background(0);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1000; i++) {
     let data = random(training_data);
     nn.train(data.inputs, data.outputs);
   }
@@ -45,7 +45,6 @@ function draw() {
       let x2 = j / rows;
       let inputs = [x1, x2];
       let y = nn.predict(inputs);
-      noStroke();
       fill(y * 255);
       rect(i * resolution, j * resolution, resolution, resolution);
     }
