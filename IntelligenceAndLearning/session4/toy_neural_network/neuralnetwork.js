@@ -83,8 +83,6 @@ class NeuralNetwork{
     // Generating the Hidden Outputs
     let hidden = Matrix.multiply(this.weights_ih, inputs);
     hidden.add(this.bias_h);
-
-    // activation function!
     hidden.map(this.activation_function.func);
 
     // Generating the output's output!
@@ -111,9 +109,10 @@ class NeuralNetwork{
     this.weights_ho.add(weights_ho_deltas);
     this.bias_o.add(gradients);
 
-    // backpropagate hidden->output  errors
+    // backpropagate hidden->output errors
     let who_t = Matrix.transpose(this.weights_ho);
     let hidden_errors = Matrix.multiply(who_t, output_errors);
+
     let hidden_gradient = Matrix.map(hidden, this.activation_function.dfunc);
     hidden_gradient.multiply(hidden_errors);
     hidden_gradient.multiply(this.learning_rate);

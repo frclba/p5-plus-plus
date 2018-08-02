@@ -32,15 +32,17 @@ class Matrix {
         arr.push(this.data[i][j]);
       }
     }
+    return arr;
   }
+
   randomize(){
     return this.map(e => Math.random() * 2 - 1);
   }
 
   static subtract(a, b){
-    if(a.row !== b.rows || a.cols !== b.cols){
+    if(a.rows !== b.rows || a.cols !== b.cols){
       console.log('Columns and Rows of A must match Columns and Rows of B.');
-      return
+      return;
     }
 
     return new Matrix(a.rows, a.cols).map((_, i, j) => a.data[i][j] - b.data[i][j]);
@@ -49,7 +51,7 @@ class Matrix {
   add(n) {
     if(n instanceof Matrix){
       if(this.rows !== n.rows || this.cols !== n.cols){
-        console.log('Columns and rows of A must match columns and rows of B.');
+        console.log('Columns and Rows of A must match Columns and Rows of B.');
         return;
       }
       return this.map((e, i, j) => e + n.data[i][j]);
@@ -66,7 +68,7 @@ class Matrix {
 
   static multiply(a, b){
     if(a.cols !== b.rows){
-      console.log('Columns of A must match rows of b.');
+      console.log('Columns of A must match rows of B.');
       return;
     }
     return new Matrix(a.rows, b.cols)
@@ -83,7 +85,7 @@ class Matrix {
   multiply(n){
     if(n instanceof Matrix){
       if(this.rows !== n.rows || this.cols !== n.cols){
-        console.log('Columns and rows of A must match cols and rows of b.');
+        console.log('Columns and Rows of A must match Columns and Rows of B.');
         return;
       }
       return this.map((e, i, j) => e * n.data[i][j]);
