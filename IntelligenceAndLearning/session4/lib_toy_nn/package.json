@@ -1,0 +1,26 @@
+{
+  "name": "toy-neural-network",
+  "version": "0.0.1",
+  "description": "Toy Neural Network JavaScript library for Coding Train tutorials",
+  "main": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "neural",
+    "network",
+    "machine",
+    "learning",
+    "education",
+    "javascript"
+  ],
+  "devDependencies": {
+    "jest": "^22.1.4"
+  },
+
+"jest": {
+  "verbose": true,
+  "testURL": "http://localhost/"
+}
+
+}
