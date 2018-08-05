@@ -15,7 +15,7 @@ function nextGeneration(){
 
 function generate(oldBirds){
   let newBirds = [];
-  for(let i = 0; i < oldBirds; i++){
+  for(let i = 0; i < oldBirds.length; i++){
     let bird = poolSelection(oldBirds);
     newBirds[i] = bird;
   }
@@ -23,6 +23,11 @@ function generate(oldBirds){
 }
 
 function normalizeFitness(birds){
+
+  for (let i = 0; i < birds.length; i++) {
+   birds[i].score = pow(birds[i].score, 2);
+ }
+
   let sum = 0;
   for(let i = 0; i < birds.length; i++){
     sum += birds[i].score;

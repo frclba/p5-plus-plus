@@ -123,7 +123,8 @@ function draw(){
       highScore = tempHighScore;
       bestBird = tempBestBird;
     }
-  } else{
+  }
+  else{
     tempHighScore = bestBird.score;
     if(tempHighScore > highScore){
       highScore = tempHighScore;
@@ -139,8 +140,7 @@ function draw(){
 
   if(runBest){
     bestBird.show();
-  }
-  else{
+  }  else{
     for(let i = 0; i < activeBirds.length; i++){
       activeBirds[i].show();
     }
