@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>NeuroEvolution FlappyBird</title>
+
+	<script src="/libraries/p5.js"></script>
+	<script src="/libraries/p5.dom.js"></script>
+	<script src="/libraries/p5.sound.js"></script>
+  <script src="sketch.js"></script>
+	<script src="bird.js"></script>
+	<script src="pipe.js"></script>
+	<script src="geneticalgorithm.js"></script>
+
+  <script src="../../session4-neural-network/lib_toy_nn/neuralnetwork.js"></script>
+  <script src="../../session4-neural-network/lib_toy_nn/matrix.js"></script>
+
+  <style>
+		canvas {
+			margin:auto;
+		}
+	</style>
+</head>
+
+<body>
+  <div id="canvascontainer"></div>
+  <p>
+    speed: <input id="speedSlider" type="range" min="1" max="10" value="1"> <span id="speedSpan">1</span>
+    <br/> high score: <span id="highScoreSpan">0</span>
+    <br/> all time high score: <span id="allTimeHighScoreSpan">0</span>
+  </p>
+  <p>
+    <button id="best">run best so far</button>
+  </p>
+
+
+</body>
+
+</html>

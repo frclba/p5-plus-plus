@@ -19,9 +19,9 @@ class NeuralNetwork{
   constructor(in_nodes, hid_nodes, out_nodes){
     if(in_nodes instanceof NeuralNetwork){
       /*
-      * if first argument is a NeuralNetwork the constructor clones it
-      * USAGE: cloned_nn = new NeuralNetwork(to_clone_nn);
+      * Overload for argurment as a copy of itself
       */
+      // console.log("New copy of NN");
       let a = in_nodes;
       this.input_nodes = a.input_nodes;
       this.hidden_nodes = a.hidden_nodes;
@@ -35,6 +35,7 @@ class NeuralNetwork{
     }
 
     else{
+      // console.log("input: |" + in_nodes + "| hidden layer: |" + hid_nodes + "| output: |" + out_nodes+"|");
       this.input_nodes = in_nodes;
       this.hidden_nodes = hid_nodes;
       this.output_nodes = out_nodes;
