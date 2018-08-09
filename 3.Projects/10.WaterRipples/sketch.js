@@ -1,25 +1,16 @@
-let rows;
-let cols;
-let damping;
+const damping = 0.999;
 
-let current;
-let previous;
+let buffer2;
+let buffer1;
 
-let canv;
 let kernel;
 
-function MousePressed(){
-
-}
-
 function setup() {
-  canv = createCanvas(600, 400);
-  cols = width;
-  rows = height;
+  let canvas = createCanvas(333, 333);
 
   damping = tf.scalar(0.99);
-  current = tf.zeros([cols, rows, 1]);
-  previous = tf.zerosLike(current);
+  buffer1 = tf.zeros([height, width, 1], 'float32');
+  buffer2 = tf.zerosLike(buffer1);
 
   kernel = tf.tensor([
     0.0, 0.5, 0.0,
@@ -28,16 +19,22 @@ function setup() {
   ]).as4D(3, 3, 1, 1);
 }
 
+function mouseDragged(){
+  let copyTensor = buffer1.buffer();
+  copyTensor.set(1, mouseY, mouseX, 0);
+  buffer1 = copyTensor.toTensor();
+}
 
 function draw() {
-  let next = tf.conv2d(previous, kernel, 1, 'same');
-  next = next.sub(current).mul(damping);
+  buffer1 = tf.tidy(() => {
+    let temp1 = tf.conv2d(buffer1, kernel, 1, 'same');
+    let temp2 = temp1.sub(buffer2).mul(damping).clipByValue(0, 1);
 
-  // display the water Ripples
-  tf.toPixels(next, canv.elt);
+    buffer2.dispose();
+    buffer2 = buffer1;
 
-  // swapping
-  let temp = previous;
-  previous = current;
-  current = next;
+    return temp2;
+  });
+
+tf.tidy(() => (tf.toPixels(buffer1, canvas), null));
 }
