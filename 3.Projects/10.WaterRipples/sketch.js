@@ -1,48 +1,43 @@
-const ROWS = 200;
-const COLS = 200;
+let rows;
+let cols;
+let damping;
 
-let damping = 0.9;
+let current;
+let previous;
 
-let current = [];
-let previous = [];
+let canv;
+let kernel;
 
-function setup(){
-  createCanvas(ROWS, COLS);
-  initialize();
+function MousePressed(){
+
 }
 
-function draw(){
-  background(0);
-  // stroke(255);
-  loadPixels();
-  for(let i = 1; i < COLS-1; i++){
-    for(let j = 1; j < ROWS-1; j++){
+function setup() {
+  canv = createCanvas(600, 400);
+  cols = width;
+  rows = height;
 
-      current[i][j] = (
-        previous[i-1][j] +
-        previous[i+1][j] +
-        previous[i][j-1] +
-        previous[i][j+1]) /
-        2 - previous[i][j];
+  damping = tf.scalar(0.99);
+  current = tf.zeros([cols, rows, 1]);
+  previous = tf.zerosLike(current);
 
-      let index = i + j * COLS;
-      pixels[index] = color(current[i][j]);
-    }
-  }
-  updatePixels();
+  kernel = tf.tensor([
+    0.0, 0.5, 0.0,
+    0.5, 0.0, 0.5,
+    0.0, 0.5, 0.0
+  ]).as4D(3, 3, 1, 1);
 }
 
 
+function draw() {
+  let next = tf.conv2d(previous, kernel, 1, 'same');
+  next = next.sub(current).mul(damping);
 
-function initialize(){
-  for(let i = 0; i < COLS; i++){
-    current[i] = new Array(ROWS);
-    previous[i] = new Array(ROWS);
-  }
-  for(let i = 0; i < COLS; i++){
-    for(let j = 0; j < ROWS; j++){
-      current[i][j] = 255;
-      previous[i][j] = 255;
-    }
-  }
+  // display the water Ripples
+  tf.toPixels(next, canv.elt);
+
+  // swapping
+  let temp = previous;
+  previous = current;
+  current = next;
 }
