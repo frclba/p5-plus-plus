@@ -1,26 +1,31 @@
-function setup(){
+let growth = 0;
+let shrink = 0;
+
+function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
-function draw(){
-  noLoop();
+function draw() {
   background(51);
-  translate(width/2, height/2);
+  translate(width / 2, height / 2);
   stroke(255, 0, 255);
   fill(255);
   // noFill();
-  drawRose(16, 300);
+
+  drawRose(16, 300 *  sin(growth));
+  growth += 0.005;
+
+
   // drawMaurerRose(72,60,400);
 }
 
-function ran(n)
-{
-    return Math.ceil(Math.random()*n);
+function ran(n) {
+  return Math.ceil(Math.random() * n);
 }
 
-function drawRose(n, sc1){
+function drawRose(n, sc1) {
   beginShape();
-  for(let angle = 0; angle < TWO_PI; angle += 0.01){
+  for (let angle = 0; angle < TWO_PI; angle += 0.01) {
     let r = sin(n * angle);
     let x = sc1 * r * sin(angle);
     let y = sc1 * r * cos(angle);
@@ -32,7 +37,7 @@ function drawRose(n, sc1){
 
 
 
-function drawMaurerRose(n, d, sc1){
+function drawMaurerRose(n, d, sc1) {
   let theta = 0;
   let r;
   let t;
@@ -41,9 +46,9 @@ function drawMaurerRose(n, d, sc1){
 
   beginShape();
 
-  do{
+  do {
     theta += d;
-    if(theta >= 360)
+    if (theta >= 360)
       theta = theta % 360;
 
     x = radians((n * theta) % 360);
@@ -58,6 +63,6 @@ function drawMaurerRose(n, d, sc1){
 
     oldVector.x = newVector.x;
     oldVector.y = newVector.y;
-  }  while(theta != 0);
+  } while (theta != 0);
   endShape(CLOSE);
 }
