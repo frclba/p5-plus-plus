@@ -13,6 +13,7 @@ function draw() {
   // noFill();
 
   drawRose(16, 300 *  sin(growth));
+
   growth += 0.005;
 
 

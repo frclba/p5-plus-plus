@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Flowers-Vr</title>
+  <meta name="description" content="V R Boxes.">
+
+  <!-- p5.js files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
+
+  <!-- A-Frame files -->
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+  
+  <!-- p5 sketch -->
+  <script src="sketch.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <a-scene id="scene">
+
+    <a-assets>
+      <img id="grid" src="https://i.imgur.com/25P1geh.png" crossorigin="anonymous">
+      <img id="sky" src="https://i.imgur.com/WqlqEkq.jpg" crossorigin="anonymous">
+    </a-assets>
+    
+    <a-entity 
+    position="0 0 0" 
+    geometry="primitive: plane; width: 10000; height: 10000;"
+    rotation="-90 0 0" 
+    material="src: #grid; repeat: 10000 10000; transparent: true; metalness: 0.6; roughness: 0.4; sphericalEnvMap: #sky;">
+    </a-entity>
+
+    <a-sky src="#sky" rotation = "0 -90 0"></a-sky>
+    
+    <a-entity>
+      <a-camera>
+        <a-cursor color="pink"></a-cursor>
+      </a-camera>
+    </a-entity>
+
+  </a-scene>
+</body>
+
+</html>
