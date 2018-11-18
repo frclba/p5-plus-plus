@@ -11,21 +11,27 @@ function draw() {
 	stroke(255);
 	noFill();
 	translate(width/2, height);
-	branch(100);
+	branch(300);
 }
 
 function branch (len) {
+	var fraction = 2/3;
+
 	line(0, 0, 0, -len);
 	translate(0, -len);
-	var fraction = 2/3;
+
 	if(len > 3) {
+		// Draw Left Branch
 		push();
 		rotate(angle);
 		branch(len*fraction);
 		pop();
+
+		// Draw Right Branch
 		push();
 		rotate(-angle);
 		branch(len*fraction);
+		drawCircle(0,0,9);
 		pop();
 	}
 }
@@ -34,9 +40,8 @@ function drawCircle(x, y, radius){
 	ellipse(x, y, radius);
 
 	if (radius > 1 * 2){
-		// drawCircle(x + radius * 0.5, y, radius * 0.5)
-		// drawCircle(x - radius * 0.5, y, radius * 0.5)
-
+		// drawCircle(x + radius * 0.5, y, radius * 0.5);
+		// drawCircle(x - radius * 0.5, y, radius * 0.5);
 		if (random(0, 10) < 20){
 			drawCircle(x, y - radius * 0.5, radius * 0.5)
 		}
