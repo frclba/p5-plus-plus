@@ -7,6 +7,9 @@ let path = [];
 let drawing = [];
 let state = -1;
 
+const USER = 0;
+const FOURIER = 1;
+
 function mousePressed() {
 	state = USER;
 	drawing = [];
@@ -31,7 +34,7 @@ function mouseReleased() {
 }
 
 function setup() {
-	createCanvas(800, 600);
+	createCanvas(windowWidth, windowHeight);
 }
 
 function epiCycles(x, y, rotation, fourier) {
@@ -57,9 +60,9 @@ function epiCycles(x, y, rotation, fourier) {
 
 function draw() {
 	background(51);
-
+	strokeWeight(3);
 	if (state == USER) {
-		let point = creteVector(mouseX - width / 2, mouseY - height / 2);
+		let point = createVector(mouseX - width / 2, mouseY - height / 2);
 		drawing.push(point);
 		stroke(255);
 		noFill();
