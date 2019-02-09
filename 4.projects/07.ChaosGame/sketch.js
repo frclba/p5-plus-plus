@@ -1,7 +1,6 @@
 let ax, ay;
 let bx, by;
 let cx, cy;
-
 let x, y;
 
 function setup() {
@@ -29,7 +28,7 @@ function draw() {
 		strokeWeight(2);
 		point(x, y);
 		let r = floor(random(3));
-		console.log(r);
+
 		switch (r) {
 			case 0:
 				stroke(255, 0, 255);
@@ -40,6 +39,7 @@ function draw() {
 				stroke(0, 255, 255);
 				x = lerp(x, bx, 0.5);
 				y = lerp(y, by, 0.5);
+				break;
 			case 2:
 				stroke(255, 255, 0);
 				x = lerp(x, cx, 0.5);
