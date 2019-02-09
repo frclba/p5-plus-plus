@@ -1,49 +1,63 @@
-let ax, ay;
-let bx, by;
-let cx, cy;
-let x, y;
+// The Chaos Game
+// Daniel Shiffman
+// Part 1: https://youtu.be/7gNzMtYo9n4
+// https://thecodingtrain.com/CodingChallenges/123.1-chaos-game
+// Part 2: https://youtu.be/A0NHGTggoOQ
+// https://thecodingtrain.com/CodingChallenges/123.2-chaos-game
+
+let points;
+let current;
+let percent = 0.5;
+let previous;
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-  ax = width / 2;
-  ay = 0;
-  bx = 0;
-  by = height;
-  cx = width;
-  cy = height;
-  x = random(width);
-  y = random(height);
+  createCanvas(windowWidth, windowHeight);
+  points = [];
+  const n = 6;
 
-	background(0);
-	stroke(255);
-	strokeWeight(8);
+  for (let i = 0; i < n; i++) {
+    // let v = createVector(random(width), random(height));
+    let angle = i * TWO_PI / n;
+    let v = p5.Vector.fromAngle(angle);
+    v.mult(width / 2);
+    v.add(width / 2, height / 2);
+    points.push(v);
+  }
 
-	point(ax, ay);
-	point(bx, by);
-	point(cx, cy);
+  reset();
+}
+
+function reset() {
+  current = createVector(random(width), random(height));
+  background(0);
+  stroke(0, 255, 0);
+  strokeWeight(8);
+  for (let p of points) {
+    point(p.x, p.y);
+  }
+
+
 }
 
 function draw() {
-	for(let i = 0; i < 100; i++){
-		strokeWeight(2);
-		point(x, y);
-		let r = floor(random(3));
 
-		switch (r) {
-			case 0:
-				stroke(255, 0, 255);
-				x = lerp(x, ax, 0.5);
-				y = lerp(y, ay, 0.5);
-				break;
-			case 1:
-				stroke(0, 255, 255);
-				x = lerp(x, bx, 0.5);
-				y = lerp(y, by, 0.5);
-				break;
-			case 2:
-				stroke(255, 255, 0);
-				x = lerp(x, cx, 0.5);
-				y = lerp(y, cy, 0.5);
-		}
-	}
+  if (frameCount % 100 == 0) {
+    reset();
+  }
+
+  for (let i = 0; i < 30000; i++) {
+    strokeWeight(1);
+    stroke(0,255,50);
+    let next = random(points);
+    if (next !== previous) {
+      current.x = lerp(current.x, next.x, percent);
+      current.y = lerp(current.y, next.y, percent);
+      point(current.x, current.y);
+    }
+
+    previous = next;
+  }
+
+
+
 }
