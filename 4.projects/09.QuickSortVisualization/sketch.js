@@ -34,7 +34,32 @@ async function partition(arr, start, end){
 	let pivotIndex = start;
 	states[pivotIndex] = 0;
 	for(let i = start; i < end; i++){
+		if (arr[i] < pivotValue) {
+			await swap(arr, i, pivotIndex);
+			states[pivotIndex] = -1;
+			pivotIndex++;
+			states[pivotIndex] = 0;
+		}
 	}
+	await swap(arr,pivotIndex,end);
+
+	for (let i = start; i < end; i++){
+		if(i != pivotIndex){
+			states[i] = -1;
+		}
+	}
+	return pivotIndex;
+}
+
+async function swap(arr, a, b) {
+	await sleep(50);
+	let temp = arr[a];
+	arr[a] = arr[b];
+	arr[b] = temp;
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function draw() {
