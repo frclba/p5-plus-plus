@@ -1,12 +1,12 @@
 let particles = [];
 let flowField;
 let scale = 10;
-let increment = 0.001;
+let increment = 0.09;
 let cols;
 let rows;
 
 function setup(){
-  createCanvas(600, 900);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 255);
   background(51);
 
@@ -16,7 +16,7 @@ function setup(){
   flowField = new FlowField();
   flowField.drawFlowField();
 
-  for(let i = 0; i < 6000; i++){
+  for(let i = 0; i < 600; i++){
     particles[i] = new Particle();
   }
 }

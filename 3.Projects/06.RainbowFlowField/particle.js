@@ -54,8 +54,9 @@ class Particle{
   }
 
   display(){
-    stroke(this.hue, 255, 255, 25);
-    // ellipse(this.position.x, this.position.y, 10);
+    stroke(this.hue, 255, 255, 100);
+    fill(0);
+    ellipse(this.position.x, this.position.y, 10);
     this.hue += 1;
     if(this.hue > 255){
       this.hue = 0;

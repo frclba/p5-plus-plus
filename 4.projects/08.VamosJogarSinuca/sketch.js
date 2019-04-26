@@ -21,7 +21,7 @@ function draw() {
 
 	noStroke();
 	fill(55);
-	rect(5, 7, width/2, height/2);
+	// rect(5, 7, width/2, height/2);
 
 	position.add(velocity);
 
