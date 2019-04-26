@@ -1,15 +1,6 @@
 let position,velocity;
 let field;
-let ratio = 1;
-
-function calculateMMC(arg1, arg2){
-	let fieldArray = [];
-	let rows = width/arg1;
-	let cols = height/arg2;
-
-	field = new Field(rows, cols);
-	console.log(field);
-}
+const ratio = 1;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -18,8 +9,11 @@ function setup() {
 	position = createVector(0, 0);
 	velocity = createVector(5, 10);
 
-	calculateMMC(5,7);
+	let rows = floor(width/ratio);
+	let cols = floor(height/ratio);
 
+	field = new Field(rows, cols);
+	field.display();
 }
 
 function draw() {
