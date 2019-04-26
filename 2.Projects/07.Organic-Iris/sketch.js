@@ -6,8 +6,7 @@ let noiseScale = 1500, noiseStrength = 250;
 let overlayAlpha = 0, irisAlpha = 255, strokeWidth = .3;
 
 // main circle parameters
-let radius = 100;
-let rTemp = radius;
+let rTemp = 100;
 
 // animation related variables
 let limit = 200, timer = 0;
@@ -27,7 +26,9 @@ function setup() {
 function draw() {
 
   for (let i = 0; i < 100; i++){
-    //newIris = new Iris();
+    let newIris = new Iris();
+    // console.log(newIris);
+    
     // background related
     fill(255,255,255, overlayAlpha);
     rect(-5, -5, width+10, height+10);
@@ -40,12 +41,12 @@ function draw() {
 
     // Animate Iris
     for (let i = 0; i < protection; i++)
-      circle.drawIris(0);
+      newIris.drawIris(0);
 
     // reset parameters every time 'limit' is hit
     if ( (timer = (timer + .5) % limit) == 0 ) {
       for (let i = 0; i < protection; i++) {
-        circle.reDrawIt();
+        newIris.reDrawIt();
       }
     }
   }
