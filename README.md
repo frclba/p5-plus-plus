@@ -12,5 +12,5 @@ This framework allow designers, artists and programmers to push their creativity
 ```
 git clone
 cd p5-projects
-python -m SimpleHTTPServer 8080
+python -m http.server 8000
 ```
