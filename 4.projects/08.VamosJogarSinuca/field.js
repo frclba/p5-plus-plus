@@ -1,6 +1,6 @@
 class Field {
   constructor(rows, cols){
-    this.scale = 1;
+    this.scale = 100;
 
     this.rows = rows;
     this.cols = cols;
@@ -8,14 +8,16 @@ class Field {
   }
 
   display(){
-    // translate(width/2, height/2);
-    for(let x = 0; x < width; x+=19){
-      for(let y = 0; y < height; y+=19){
-        line(x, y, x+10, y);
-        line(x, y, x, y+10);
-        line(x+10, y, x+10, y+10);
-        line(x, y+10, x+10, y+10);
-      }
+    let startX = 0;
+    let startY = 0;
+
+    while(startX < height){
+      line(0, startX, width, startX);
+      startX += this.scale;
+    }
+    while(startY < width){
+      line(startY, 0, startY, height);
+      startY += this.scale;
     }
   }
 }

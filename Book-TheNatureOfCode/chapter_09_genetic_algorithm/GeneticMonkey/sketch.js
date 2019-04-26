@@ -19,8 +19,8 @@ function setup() {
 	stats.class("stats");
 
 	target = "ser ou nao ser eis a questao";
-	popmax = 1000;
-	mutationRate = 0.03;
+	popmax = 500;
+	mutationRate = 0.06;
 
 	population = new Population(target, mutationRate, popmax);
 }
