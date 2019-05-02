@@ -1,55 +1,54 @@
-
-// noise factors
-let noiseScale = 1500, noiseStrength = 250;
+let arrIris = new Array(1000)
 
 // noise display factors
-let overlayAlpha = 0, irisAlpha = 255, strokeWidth = .3;
+let overlayAlpha = 0;
+let irisAlpha = 255;
+let strokeWidth = 0.3;
 
 // main circle parameters
 let rTemp = 100;
-
+let radius = 100
 // animation related variables
-let limit = 200, timer = 0;
+let limit = 200;
+let timer = 0;
 
 // colors
-// let bckg = color('rgb(0,0,255)');
-// let c1 = color('rgb(255,255,255)');
-
-
+let c1;
+let bckg;
 
 function setup() {
-  createCanvas(700, 700);
+  createCanvas(windowWidth, windowHeight);
   smooth();
-  background(0,0,0);
+  bckg = color(0,0,0);
+  c1 = color(255,255,255);
+  background(bckg);
 }
 
 function draw() {
+  for (let i = 0; i < arrIris.length; i++) {
+    arrIris[i] = new Iris();
+    timer += 0.5;
 
-  for (let i = 0; i < 100; i++){
-    let newIris = new Iris();
-    // console.log(newIris);
-    
     // background related
-    fill(255,255,255, overlayAlpha);
-    rect(-5, -5, width+10, height+10);
-
-    if ( (timer = (timer + .5)) > limit - 20) {
+    fill(bckg, overlayAlpha);
+    rect(-5, -5, width + 10, height + 10);
+    if (timer > limit - 20) {
       // this is for that quick fade at the end of a cycle
-      fill(155, 0, 0 , overlayAlpha + 40);
-      rect(-5, -5, width+10, height+10);
+      fill(bckg, overlayAlpha + 40);
+      rect(-5, -5, width + 10, height + 10);
     }
 
     // Animate Iris
-    for (let i = 0; i < protection; i++)
-      newIris.drawIris(0);
-
+    fill(c1);
+    for (let i = 0; i < arrIris.length; i++) {
+      arrIris[i].drawIris();
+    }
     // reset parameters every time 'limit' is hit
-    if ( (timer = (timer + .5) % limit) == 0 ) {
-      for (let i = 0; i < protection; i++) {
-        newIris.reDrawIt();
+    if (timer % limit === 0) {
+      for (let i = 0; i < arrIris; i++) {
+        arrIris[i].reDrawIt();
       }
     }
   }
 }
-
-///////////////////////
+  ///////////////////////

@@ -4,7 +4,9 @@ let protection = 100;
 let angle = 0;
 let NDo;
 let isOutside = false;
-let radius = 100;
+
+let noiseScale;
+let noiseStrength;
 
 class Iris {
   // x,y    = the current position
@@ -14,12 +16,12 @@ class Iris {
     this.step = 5;
     this.NDo = floor(random(360));
     this.radius = 100;
-    this.sx = width / 2 + this.radius * cos(NDo);
-    this.sy = height / 2 + this.radius * sin(NDo);
+    this.sx = (width / 2) + (this.radius * cos(this.NDo));
+    this.sy = (height / 2) + (this.radius * sin(this.NDo));
     this.x = x;
     this.y = y;
   }
-  
+
   controlIris(x, y) {
     let isOutside = false;
 
@@ -32,7 +34,7 @@ class Iris {
     return isOutside;
   }
 
-  drawIris(noiseScale) {
+  drawIris() {
     let x = this.x;
     let y = this.y;
 
