@@ -5,43 +5,40 @@ let w;
 let h;
 
 function setup() {
-	createCanvas(400, 400);
-	background(0);
-	w = floor(width/2);
-	h = floor(heigh/2);
-
-	frameRate(6);
-	// snake = new snake();
-	// foodLocation();
+	createCanvas(800, 600);
+	w = floor(width/rez);
+	h = floor(height/rez);
+	frameRate(15);
+	snake = new Snake();
+	foodLocation();
 }
 
 function draw() {
 	scale(rez);
 	background(51);
-	ellipse(width / 2, height / 2, 51);
-	fill(255, 0, 255);
 
-	// if(snake.eat(food)){
-	// 	foodLocation();
-	// }
-	// snake.update();
-	// snake.show();
-	//
-	// if (snake.endGame()){
-	// 	print("END GAME");
-	// 	background(255, 0, 0);
-	// 	noLoop();
-	// }
-	// noStroke();
-	// fill(255, 0, 0);
-	// ClientRect(food.x, food.y, 1, 1);
+	if(snake.eat(food)){
+		foodLocation();
+	}
+	snake.update();
+	snake.show();
+
+	if (snake.endGame()){
+		print("END GAME");
+		background(255, 0, 0);
+		noLoop();
+	}
+
+	noStroke();
+	fill(255, 0, 255);
+	rect(food.x, food.y, 1, 1);
 }
 
 
 function foodLocation() {
 	let x = floor(random(w));
 	let y = floor(random(h));
-	food = createVectr(x, y);
+	food = createVector(x, y);
 }
 
 function keyPressed() {

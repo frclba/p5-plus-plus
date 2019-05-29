@@ -13,7 +13,7 @@ class Snake {
     }
 
     update() {
-        let head = this.body[this.body.lenght - 1].copy();
+        let head = this.body[this.body.length - 1].copy();
         this.body.shift();
         head.x += this.xdir;
         head.y += this.ydir;
@@ -53,7 +53,8 @@ class Snake {
     show(){
         for(let i = 0; i < this.body.length; i++){
             fill(0);
-            noStroke();
+            stroke(255);
+            strokeWeight(0.05);
             rect(this.body[i].x, this.body[i].y, 1, 1);
         }
     }
