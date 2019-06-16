@@ -11,22 +11,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
 	<script src="sketch.js"></script>
-
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-
-		canvas {
-			margin: auto;
-		}
-
-	</style>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
 <body>
+	<h1>Global Avarage Temperatures 1880-2018</h1>
+	<canvas id="myChart" width="400" height="200"></canvas>
+	<script>
+		window.addEventListener('load', setup)
+	</script>
 </body>
 
 </html>
