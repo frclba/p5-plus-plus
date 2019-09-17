@@ -1,8 +1,8 @@
 let pi = 4;
 let interation = 0;
 
-let minY = 2;
-let maxY = 4;
+let minY = 3;
+let maxY = 3.28;
 
 const history = [];
 let div;
@@ -10,6 +10,7 @@ let div;
 function setup() {
 	createCanvas(windowWidth, 400);
 	div = createDiv("0")
+	frameRate(21)
 }
 
 function draw() {
