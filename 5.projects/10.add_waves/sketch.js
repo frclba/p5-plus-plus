@@ -134,10 +134,11 @@ function draw() {
 		line(0, yOff + amp, mx, yOff + amp);
 
 		let { freq = 1, offset = 0 } = waves[index];
-		offset *= PI;
+		offset *= Math.PI;
+
 		stroke(0, 190, 255);
 		const t = map(mX, 0, mx, -1, 1);
-		const _y = -sin(t * baseFreq * freq * offset) * amp;
+		const _y = -sin(t * baseFreq * freq + offset) * amp;
 		if (isSelected) {
 			mY += _y;
 		}
@@ -149,11 +150,12 @@ function draw() {
 			const t = i / (count - 1);
 			const x = t * mx;
 			const y = -sin((t * 2 - 1) * baseFreq * freq + offset) * amp;
+
 			let { [i]: existing } = newVerts;
 			if (!existing) {
 				existing = newVerts[i] = { x, y: 0 };
 			}
-			if(isSelected) {
+			if (isSelected) {
 				existing.y += y;
 			}
 			curveVertex(x, y + yOff);
@@ -163,10 +165,10 @@ function draw() {
 	}
 
 	const finalVerts = newVerts;
-	translate(0, mx*0.2 * (waves.length+1));
+	translate(0, mx * 0.2 * (waves.length + 1));
 
 	stroke(255, 120);
-	line(0,0,mx,0);
+	line(0, 0, mx, 0);
 	stroke(255, 50);
 	line(0, -amp * 2, mx, -amp * 2);
 	line(0, -amp, mx, -amp);
@@ -190,8 +192,8 @@ function draw() {
 
 	stroke(255, 0, 255);
 	beginShape();
-	for(let i = -1; i < finalVerts.length; i++) {
-		const {x, y} = finalVerts[i];
+	for (let i = -1; i < finalVerts.length; i++) {
+		const { x, y } = finalVerts[i];
 		curveVertex(x, y);
 	}
 	endShape();
@@ -203,10 +205,7 @@ function windowResized() {
 
 function mouseClicked() {
 	mouseClickedAt.hasChecked = false;
-	Object.assign(
-		mouseClickedAt,
-		mousePosToNewSpace(mouseX, mouseY)
-	);
+	Object.assign(mouseClickedAt, mousePosToNewSpace(mouseX, mouseY));
 }
 
 function mouseWheel(event) {
