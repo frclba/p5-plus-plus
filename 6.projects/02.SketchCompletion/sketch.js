@@ -125,10 +125,10 @@ let nextPen = 'down';
 let seedPoints = [];
 
 let selectElement;
-let selected = 'everything';
+let selected = 'cat';
 
 function preload() {
-	sketchRNN = ml5.sketchRNN(selected);
+	sketchRNN = ml5.sketchRNN('cat');
 }
 
 function startDrawing() {
@@ -152,10 +152,10 @@ function sketchRNNStart() {
 
 	// Drawing new Points
 	background(51);
-	beginShape();
 	noFill();
 	strokeWeight(3);
 	stroke(255, 0, 255);
+	beginShape();
 	for (let v of rdpPoints) {
 		vertex(v.x, v.y);
 	}
@@ -172,9 +172,7 @@ function sketchRNNStart() {
 			dy: rdpPoints[i].y - rdpPoints[i - 1].y,
 			pen: 'down'
 		};
-		line(x, y, x + strokePath.dx, y + strokePath.dy);
-		//x += strokePath.dx;
-		//y += strokePath.dy;
+
 		seedPath.push(strokePath);
 	}
 
@@ -182,26 +180,16 @@ function sketchRNNStart() {
 }
 
 function setup() {
-	let canvas = createCanvas(400, 400);
+	let canvas = createCanvas(600, 600);
 	background(51);
 	canvas.mousePressed(startDrawing);
 	canvas.mouseReleased(sketchRNNStart);
 
-	selectElement = createSelect();
-	for (opt of models) {
-		selectElement.option(opt);
-	}
-	selectElement.changed(mySelectEventChanged);
-
 	console.log('model loaded');
 }
 
-function mySelectEventChanged() {
-	let option = selectElement.value();
-	sketchRNN = ml5.sketchRNN(option);
-}
-
 function gotStrokePath(error, strokePath) {
+	//console.error(error);
 	//console.log(strokePath);
 	currentStroke = strokePath;
 }
@@ -210,13 +198,15 @@ function draw() {
 	stroke(255, 0, 255);
 	strokeWeight(3);
 	if (personDrawing) {
-		seedPoints.push(createVector(mouseX, mouseY));
 		line(mouseX, mouseY, pmouseX, pmouseY);
+		seedPoints.push(createVector(mouseX, mouseY));
 	}
 	if (currentStroke) {
 		if (nextPen === 'end') {
 			sketchRNN.reset();
 			sketchRNNStart();
+			currentStroke = null;
+			nextPen = 'down';
 			return;
 		}
 		if (nextPen === 'down') {
