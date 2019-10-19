@@ -5,11 +5,11 @@ let dSlider;
 let nSlider;
 
 function setup() {
-	createCanvas(500, 500);
-	dSlider = createSlider(1, 180, 71);
+	createCanvas(600, 600);
+	dSlider = createSlider(1, 180, 72);
 	nSlider = createSlider(1, 36, 6);
 	angleMode(DEGREES);
-	frameRate(1);
+	frameRate(30);
 }
 
 function draw() {
@@ -47,6 +47,6 @@ function draw() {
 	}
 	endShape();
 
-	n === 12 ? n = 1 : n += 1;
-	d === 100 ? d = 1 : d += 10;
+	n === 10 ? n = 1 : n += 0.01;
+	d === 30 ? d = 1 : d += 0.01;
 }
