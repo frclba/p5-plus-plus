@@ -122,10 +122,15 @@ let x, y;
 let seedPath = [];
 let personDrawing = false;
 let nextPen = 'down';
+let seedPoints = [];
+
+let selectElement;
+let selected = 'everything';
 
 function preload() {
-	sketchRNN = ml5.sketchRNN('cat');
+	sketchRNN = ml5.sketchRNN(selected);
 }
+
 function startDrawing() {
 	personDrawing = true;
 	x = mouseX;
@@ -134,6 +139,45 @@ function startDrawing() {
 
 function sketchRNNStart() {
 	personDrawing = false;
+
+	// Perform RDP Line Simplification
+	const rdpPoints = [];
+	const total = seedPoints.length;
+	const start = seedPoints[0];
+	const end = seedPoints[total - 1];
+
+	rdpPoints.push(start);
+	rdp(0, total - 1, seedPoints, rdpPoints);
+	rdpPoints.push(end);
+
+	// Drawing new Points
+	background(51);
+	beginShape();
+	noFill();
+	strokeWeight(3);
+	stroke(255, 0, 255);
+	for (let v of rdpPoints) {
+		vertex(v.x, v.y);
+	}
+	endShape();
+
+	x = rdpPoints[rdpPoints.length - 1].x;
+	y = rdpPoints[rdpPoints.length - 1].y;
+
+	seedPath = [];
+	// Converting sketch rnn states
+	for (let i = 1; i < rdpPoints.length; i++) {
+		let strokePath = {
+			dx: rdpPoints[i].x - rdpPoints[i - 1].y,
+			dy: rdpPoints[i].y - rdpPoints[i - 1].y,
+			pen: 'down'
+		};
+		line(x, y, x + strokePath.dx, y + strokePath.dy);
+		//x += strokePath.dx;
+		//y += strokePath.dy;
+		seedPath.push(strokePath);
+	}
+
 	sketchRNN.generate(seedPath, gotStrokePath);
 }
 
@@ -142,7 +186,19 @@ function setup() {
 	background(51);
 	canvas.mousePressed(startDrawing);
 	canvas.mouseReleased(sketchRNNStart);
+
+	selectElement = createSelect();
+	for (opt of models) {
+		selectElement.option(opt);
+	}
+	selectElement.changed(mySelectEventChanged);
+
 	console.log('model loaded');
+}
+
+function mySelectEventChanged() {
+	let option = selectElement.value();
+	sketchRNN = ml5.sketchRNN(option);
 }
 
 function gotStrokePath(error, strokePath) {
@@ -154,19 +210,13 @@ function draw() {
 	stroke(255, 0, 255);
 	strokeWeight(3);
 	if (personDrawing) {
-		let strokePath = {
-			dx: mouseX - pmouseX,
-			dy: mouseY - pmouseY,
-			pen: 'down'
-		};
-		line(x, y, x + strokePath.dx, y + strokePath.dy);
-		x += strokePath.dx;
-		y += strokePath.dy;
-		seedPath.push(strokePath);
+		seedPoints.push(createVector(mouseX, mouseY));
+		line(mouseX, mouseY, pmouseX, pmouseY);
 	}
 	if (currentStroke) {
 		if (nextPen === 'end') {
-			noLoop();
+			sketchRNN.reset();
+			sketchRNNStart();
 			return;
 		}
 		if (nextPen === 'down') {
