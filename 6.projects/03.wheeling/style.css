@@ -4,6 +4,7 @@
 }
 :root {
 	--bg: #111;
+	--ball: #ff00ff;
 	--primary: #ccc;
 	--size: 280;
 	--speed: 0.85;
@@ -44,7 +45,7 @@ body {
 	height: calc(var(--ball-size) * 1px);
 	width: calc(var(--ball-size) * 1px);
 	border-radius: 100%;
-	background: var(--bg);
+	background: var(--ball);
 	-webkit-transform: translate(0%, 50%) translate(0, 0);
 	transform: translate(0%, 50%) translate(0, 0);
 	-webkit-animation: travel calc(var(--speed) * 1s) calc((var(--d) * (var(--speed) / var(--multiplier))) * 1s)
