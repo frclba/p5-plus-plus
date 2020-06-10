@@ -9,7 +9,7 @@ var angle = 0;
 function setup() {
 	sliderD = createSlider(1, 22, 1, 0.5);
 	sliderN = createSlider(1, 22, 1, 0.5);
-	createCanvas(windowWidth, windowHeight);
+	createCanvas(windowWidth-10, windowHeight-10);
 }
 
 
@@ -32,7 +32,7 @@ function draw() {
 
 	beginShape();
 	for(var a = 0; a < TWO_PI * 11; a += 0.011){
-		var r = 300 * cos(k * a);
+		var r = 111 * cos(k * a);
 		var x = r * cos(a);
 		var y = r * sin(a);
 		vertex(x, y);
