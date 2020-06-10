@@ -7,10 +7,9 @@ var sliderN;
 var angle = 0;
 
 function setup() {
-	createCanvas(600, 600);
-
 	sliderD = createSlider(1, 22, 1, 0.5);
 	sliderN = createSlider(1, 22, 1, 0.5);
+	createCanvas(windowWidth, windowHeight);
 }
 
 
