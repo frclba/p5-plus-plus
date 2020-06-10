@@ -54,14 +54,14 @@ class Particle{
   }
 
   display(){
-    stroke(this.hue, 255, 255, 100);
-    fill(0);
-    ellipse(this.position.x, this.position.y, 10);
-    this.hue += 1;
+    stroke(0, 100);
+    fill(this.hue, 255, 255, 100);
+    ellipse(this.position.x, this.position.y, 6);
+    this.hue += 1.1;
     if(this.hue > 255){
       this.hue = 0;
     }
-    strokeWeight(1);
+    strokeWeight(0.5);
     line(this.position.x, this.position.y, this.prevPosition.x, this.prevPosition.y);
     this.updatePrev();
   }
