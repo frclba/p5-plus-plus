@@ -7,11 +7,11 @@ function draw() {
 	canvas.show();
 	background(51);
 	angle = slider.value();
-	print (angle);
 	stroke(255);
+	strokeWeight(2);
 	noFill();
 	translate(width/2, height);
-	branch(100);
+	branch(150);
 }
 
 function branch (len) {
