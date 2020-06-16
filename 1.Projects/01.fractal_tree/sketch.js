@@ -1,6 +1,6 @@
 function setup() {
-	canvas = createCanvas(windowWidth, 600);
 	slider = createSlider(0, PI, PI/4, 0.01);
+	canvas = createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
