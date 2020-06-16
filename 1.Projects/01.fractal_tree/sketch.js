@@ -11,11 +11,11 @@ function draw() {
 	stroke(255);
 	noFill();
 	translate(width/2, height);
-	branch(300);
+	branch(150);
 }
 
 function branch (len) {
-	var fraction = 2/3;
+	var fraction = 5/4;
 
 	line(0, 0, 0, -len);
 	translate(0, -len);
