@@ -31,7 +31,6 @@ function branch (len) {
 		push();
 		rotate(-angle);
 		branch(len*fraction);
-		drawCircle(0,0,9);
 		pop();
 	}
 }
