@@ -33,7 +33,9 @@ function draw() {
 	} else {
 		n === 10 ? n = 1 : n += 0.001;
 		d === 30 ? d = 1 : d += 0.001;
+		r === 222 ? r = 69 : r += 0.01;
 	}
+	
 	reset_btn.mousePressed(() => {
 		window.location.reload();
 	})
