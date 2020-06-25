@@ -4,20 +4,22 @@ let d = 0;
 let dSlider;
 let nSlider;
 let checkbox;
+let reset_btn;
 
 function setup() {
 	dSlider = createSlider(1, 180, 72);
 	nSlider = createSlider(1, 36, 6);
   	checkbox = createCheckbox('Enable control', false);
-
-	createCanvas(windowWidth, windowHeight);
+	reset_btn = createButton("reset");
+	
+	createCanvas(windowWidth-100, windowHeight-100);
 	angleMode(DEGREES);
-	frameRate(30);
+	frameRate(21);
 }
 
 function draw() {
 	background(51);
-	translate(width/2, height/2 + 20);
+	translate(width/2 - 10, height/2 - 10);
 	noFill();
 	
 	if(checkbox.checked()){
@@ -26,6 +28,9 @@ function draw() {
 	} else {
 		n === 10 ? n = 1 : n += 0.01;
 		d === 30 ? d = 1 : d += 0.01;
+	}
+	reset_btn.mousePressed(() => {
+		window.location.reload();
 	}
 	
 	beginShape();
