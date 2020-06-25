@@ -10,7 +10,7 @@ let checkbox;
 let reset_btn;
 
 function setup() {
-	dSlider = createSlider(1, 180, 72);
+	dSlider = createSlider(1, 180, 10);
 	nSlider = createSlider(1, 36, 6);
 	rSlider = createSlider(69, 222, 69);
   	checkbox = createCheckbox('Enable control', false);
@@ -24,21 +24,25 @@ function setup() {
 function draw() {
 	background(51);
 	translate(width/2 - 10, height/2 - 10);
-	noFill();
+	fill(0);
+	stroke(255)
+	ellipse(0, 0, 3);
+		
 	
 	if(checkbox.checked()){
 		n = nSlider.value();
 		d = dSlider.value();
 		r = rSlider.value();
 	} else {
-		n === 10 ? n = 0 : n += 0.01;
-		d === 30 ? d = 0 : d += 0.01;
+		n === 12 ? n = 0 : n += 0.01;
+		d === 72 ? d = 0 : d += 0.01;
 	}
 	
 	reset_btn.mousePressed(() => {
 		window.location.reload();
 	})
 	
+	noFill();
 	beginShape();
 	stroke(255, 0, 255);
 	strokeWeight(2);
