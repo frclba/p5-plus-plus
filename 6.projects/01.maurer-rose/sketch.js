@@ -31,7 +31,7 @@ function draw() {
 	}
 	reset_btn.mousePressed(() => {
 		window.location.reload();
-	}
+	)}
 	
 	beginShape();
 	stroke(255, 0, 255);
