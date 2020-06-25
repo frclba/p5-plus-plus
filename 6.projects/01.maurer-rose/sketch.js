@@ -1,6 +1,6 @@
 let n = 0;
 let d = 0;
-let r = 0; 
+let r = 69; 
 
 let dSlider;
 let nSlider;
@@ -31,9 +31,9 @@ function draw() {
 		d = dSlider.value();
 		r = rSlider.value();
 	} else {
-		n === 10 ? n = 1 : n += 0.001;
-		d === 30 ? d = 1 : d += 0.001;
-		r === 222 ? r = 69 : r += 0.01;
+		n === 10 ? n = 1 : n += 0.01;
+		d === 30 ? d = 1 : d += 0.01;
+		r === 222 ? r = 69 : r += 1;
 	}
 	
 	reset_btn.mousePressed(() => {
