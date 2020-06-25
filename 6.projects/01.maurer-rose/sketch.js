@@ -12,9 +12,9 @@ let reset_btn;
 function setup() {
 	dSlider = createSlider(1, 180, 72);
 	nSlider = createSlider(1, 36, 6);
-	rSlider = createSlider(69, 222, 90);
+	rSlider = createSlider(69, 222, 69);
   	checkbox = createCheckbox('Enable control', false);
-	createCanvas(windowWidth, windowHeight-100);
+	createCanvas(windowWidth, windowHeight-111);
 	reset_btn = createButton("reset");
 
 	angleMode(DEGREES);
@@ -32,8 +32,7 @@ function draw() {
 		r = rSlider.value();
 	} else {
 		n === 10 ? n = 1 : n += 0.01;
-		d === 30 ? d = 1 : d += 0.01;
-		r === 222 ? r = 69 : r += 1;
+		d === 30 ? d = 1 : d += 0.001;
 	}
 	
 	reset_btn.mousePressed(() => {
