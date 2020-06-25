@@ -1,5 +1,6 @@
 let n = 0;
 let d = 0;
+let r = 0; 
 
 let dSlider;
 let nSlider;
