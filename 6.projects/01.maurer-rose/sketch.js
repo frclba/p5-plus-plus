@@ -3,16 +3,19 @@ let d = 0;
 
 let dSlider;
 let nSlider;
+let rSlider;
+
 let checkbox;
 let reset_btn;
 
 function setup() {
 	dSlider = createSlider(1, 180, 72);
 	nSlider = createSlider(1, 36, 6);
+	rSlider = createSlider(69, 90, 222);
   	checkbox = createCheckbox('Enable control', false);
 	reset_btn = createButton("reset");
 	
-	createCanvas(windowWidth-100, windowHeight-100);
+	createCanvas(windowWidth, windowHeight-100);
 	angleMode(DEGREES);
 	frameRate(21);
 }
@@ -25,6 +28,7 @@ function draw() {
 	if(checkbox.checked()){
 		n = nSlider.value();
 		d = dSlider.value();
+		r = rSlider.value();
 	} else {
 		n === 10 ? n = 1 : n += 0.01;
 		d === 30 ? d = 1 : d += 0.01;
@@ -38,11 +42,9 @@ function draw() {
 	strokeWeight(2);
 	for(let i = 0; i < 361; i++) {
 		let k = i * d;
-		let r = 77 * sin(n*k);
-
-		let x = r * cos(k);
-		let y = r * sin(k);
-
+		let radius = r * sin(n*k);
+		let x = radius * cos(k);
+		let y = radius * sin(k);
 		vertex(x, y);
 	}
 	endShape();
@@ -52,11 +54,9 @@ function draw() {
 	strokeWeight(3);
 	for(let i = 0; i < 361; i++) {
 		let k = i;
-		let r = 70 * sin(n*k);
-
-		let x = r * cos(k);
-		let y = r * sin(k);
-
+		let radius = r * sin(n*k);
+		let x = radius * cos(k);
+		let y = radius * sin(k);
 		vertex(x, y);
 	}
 	endShape();
