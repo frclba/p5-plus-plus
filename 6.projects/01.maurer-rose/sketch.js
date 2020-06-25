@@ -18,7 +18,7 @@ function setup() {
 	reset_btn = createButton("reset");
 
 	angleMode(DEGREES);
-	frameRate(21);
+	frameRate(30);
 }
 
 function draw() {
@@ -31,8 +31,8 @@ function draw() {
 		d = dSlider.value();
 		r = rSlider.value();
 	} else {
-		n === 10 ? n = 1 : n += 0.01;
-		d === 30 ? d = 1 : d += 0.001;
+		n === 10 ? n = 0 : n += 0.01;
+		d === 30 ? d = 0 : d += 0.01;
 	}
 	
 	reset_btn.mousePressed(() => {
