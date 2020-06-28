@@ -6,8 +6,8 @@ let cols;
 let rows;
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
   reset_btn = createButton("reset");
+  createCanvas(windowWidth, windowHeight);
 
   colorMode(HSB, 255);
   background(51);
