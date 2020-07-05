@@ -6,7 +6,9 @@ let cols;
 let rows;
 
 function setup(){
+  reset_btn = createButton("reset");
   createCanvas(windowWidth, windowHeight);
+
   colorMode(HSB, 255);
   background(51);
 
@@ -22,7 +24,10 @@ function setup(){
 }
 
 function draw(){
-
+  reset_btn.mousePressed(() => {
+		window.location.reload();
+	})
+  
   for(let i = 0; i < particles.length; i++){
     particles[i].update();
     particles[i].edges();
