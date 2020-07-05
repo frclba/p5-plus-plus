@@ -35,7 +35,8 @@ function preload(){
 }
 
 function setup(){
-  let canvas = createCanvas(windowWidth, 400);
+  const customWidth = windowWidth > 600 ? windowWidth : 600;
+  let canvas = createCanvas(customWidth, 400);
   canvas.parent('canvascontainer');
   
   setupSprites();
