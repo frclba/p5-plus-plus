@@ -1,14 +1,13 @@
 /*
 *TODO ->
 ** maybe // OPTIMIZE:
-** Insert Images and other stuff
 *
 */
 
-let totalPopulation = 333;
+let totalPopulation = 222;
 
-let activeBirds = [];
-let allBirds = [];
+let activeHorses = [];
+let allHorses = [];
 let pipes = [];
 
 // DOM Stuff
@@ -44,7 +43,7 @@ function setup(){
   selectDOMs();
   runBestButton.mousePressed(toggleState);
 
-  createBirds();
+  createHorses();
 }
 
 function draw(){
@@ -56,7 +55,7 @@ function draw(){
     updatePipes();
 
     if(runBest)      controlBestBird();
-    else             controlActiveBirds();
+    else             controlActiveHorses();
 
     if(counter % 75 == 0){
       pipes.push(new Pipe());
@@ -71,7 +70,7 @@ function draw(){
   }
 
   if(runBest)     bestBird.show();
-  else            showActiveBirds();
+  else            showActiveHorses();
 }
 
 

@@ -1,6 +1,6 @@
 class Pipe{
   constructor(){
-    let spacing = 120;
+    let spacing = 130;
     let centery = random(spacing, height-spacing);
 
     this.top = centery - spacing / 2;
@@ -9,13 +9,13 @@ class Pipe{
     this.x = width;
     this.w = 90;
 
-    this.speed = 8;
+    this.speed = 9;
   }
 
 
-  hits(bird){
-    if((bird.y - bird.r) < this.top || (bird.y + bird.r) > (height - this.bottom)){
-      if(bird.x > this.x && bird.x < this.x + this.w){
+  hits(horse){
+    if((horse.y - horse.r) < this.top || (horse.y + horse.r) > (height - this.bottom)){
+      if(horse.x > this.x && horse.x < this.x + this.w){
         return true;
       }
     }

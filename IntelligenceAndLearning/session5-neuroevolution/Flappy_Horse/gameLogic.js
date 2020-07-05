@@ -9,11 +9,11 @@ function setupSprites(){
   }
 }
 
-function createBirds(){
+function createHorses(){
   for(let i = 0; i < totalPopulation; i++){
-    let bird = new Bird("", animation);
-    activeBirds[i] = bird;
-    allBirds[i] = bird;
+    let horse = new Horse("", animation);
+    activeHorses[i] = horse;
+    allHorses[i] = horse;
   }
 }
 
@@ -26,20 +26,20 @@ function updatePipes(){
   }
 }
 
-function controlActiveBirds(){
-  for(let i = activeBirds.length - 1; i >= 0; i--){
-    let bird = activeBirds[i];
-    bird.think(pipes);
-    bird.update();
+function controlActiveHorses(){
+  for(let i = activeHorses.length - 1; i >= 0; i--){
+    let horse = activeHorses[i];
+    horse.think(pipes);
+    horse.update();
 
     for(let j = 0; j < pipes.length; j++){
-      if(pipes[j].hits(activeBirds[i])){
-        activeBirds.splice(i, 1);
+      if(pipes[j].hits(activeHorses[i])){
+        activeHorses.splice(i, 1);
         break;
       }
     }
-    if(bird.bottomTop()){
-      activeBirds.splice(i, 1);
+    if(horse.bottomTop()){
+      activeHorses.splice(i, 1);
     }
   }
 }
@@ -60,11 +60,11 @@ function controlBestBird(){
 }
 
 
-function showActiveBirds(){
-  for(let i = 0; i < activeBirds.length; i++){
-    activeBirds[i].show();
-  }
-  if(activeBirds.length == 0){
+function showActiveHorses(){
+  activeHorses.map(horse => {
+    horse.show();
+  })
+  if(activeHorses.length == 0){
     nextGeneration();
   }
 }
@@ -73,13 +73,13 @@ function defineHighScore(){
   let tempHighScore = 0;
   if(!runBest){
     let tempBestBird = null;
-    for(let i = 0; i < activeBirds.length; i++){
-      let s = activeBirds[i].score;
+    activeHorses.map(horse => {
+      let s = horse.score;
       if(s > tempHighScore){
         tempHighScore = s;
-        tempBestBird = activeBirds[i];
+        tempBestBird = horse;
       }
-    }
+    })  
 
     if(tempHighScore > highScore){
       highScore = tempHighScore;

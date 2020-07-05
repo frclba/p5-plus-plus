@@ -8,7 +8,7 @@ function mutate(x) {
   }
 }
 
-class Bird {
+class Horse {
   constructor(soul, body){
     this.x = 64;
     this.y = height/2;
@@ -36,7 +36,7 @@ class Bird {
 
 
   copy(){
-    return new Bird(this.soul, this.body);
+    return new Horse(this.soul, this.body);
   }
 
   show(){
@@ -68,8 +68,8 @@ class Bird {
       inputs[0] = map(closest.x, this.x, width, 0, 1);       // x position of closest pipe
       inputs[1] = map(closest.top, 0, height, 0, 1);         // top of closest pipe opening
       inputs[2] = map(closest.bottom, 0, height, 0, 1);      // bottom of closest pipe opening
-      inputs[3] = map(this.y, 0, height, 0, 1);              // bird's y position
-      inputs[4] = map(this.velocity, -5, 5, 0, 1);           // bird's y velocity
+      inputs[3] = map(this.y, 0, height, 0, 1);              // horse's y position
+      inputs[4] = map(this.velocity, -5, 5, 0, 1);           // horse's y velocity
 
       let action = this.soul.predict(inputs);
       if (action[1] > action[0]){  // Decide to jump or not!

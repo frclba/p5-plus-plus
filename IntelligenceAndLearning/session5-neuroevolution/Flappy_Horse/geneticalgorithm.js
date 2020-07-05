@@ -8,44 +8,44 @@ function resetGame(){
 
 function nextGeneration(){
   resetGame();
-  normalizeFitness(allBirds);
-  activeBirds = generate(allBirds);
-  allBirds = activeBirds.slice();
+  normalizeFitness(allHorses);
+  activeHorses = generate(allHorses);
+  allHorses = activeHorses.slice();
 }
 
-function generate(oldBirds){
-  let newBirds = [];
-  for(let i = 0; i < oldBirds.length; i++){
-    let bird = poolSelection(oldBirds);
-    newBirds[i] = bird;
+function generate(oldHorses){
+  let newHorses = [];
+  for(let i = 0; i < oldHorses.length; i++){
+    let horse = poolSelection(oldHorses);
+    newHorses[i] = horse;
   }
-  return newBirds;
+  return newHorses;
 }
 
-function normalizeFitness(birds){
+function normalizeFitness(horses){
 
-  for (let i = 0; i < birds.length; i++) {
-   birds[i].score = pow(birds[i].score, 2);
+  for (let i = 0; i < horses.length; i++) {
+   horses[i].score = pow(horses[i].score, 2);
  }
 
   let sum = 0;
-  for(let i = 0; i < birds.length; i++){
-    sum += birds[i].score;
+  for(let i = 0; i < horses.length; i++){
+    sum += horses[i].score;
   }
-  for(let i = 0; i < birds.length; i++){
-    birds[i].fitness = birds[i].score / sum;
+  for(let i = 0; i < horses.length; i++){
+    horses[i].fitness = horses[i].score / sum;
   }
 }
 
-function poolSelection(birds){
+function poolSelection(horses){
   let index = 0;
   let r = random(1);
 
   while (r > 0) {
-    r -= birds[index].fitness;
+    r -= horses[index].fitness;
     index += 1;
   }
 
   index -= 1;
-  return birds[index].copy();
+  return horses[index].copy();
 }
