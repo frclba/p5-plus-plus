@@ -9,15 +9,19 @@ function mutate(x) {
 }
 
 class Bird {
-  constructor(soul){
+  constructor(soul, body){
     this.x = 64;
     this.y = height/2;
-    this.r = 12;
-
+    
     this.gravity = 0.8;
     this.lift = -12;
     this.velocity = 0;
-
+    
+    this.body = body;
+    this.r = 12;;
+    this.len = this.body.length;
+    this.index = 0;
+    
     if(soul instanceof NeuralNetwork){
       this.soul = soul.copy();
       this.soul.mutate(mutate)
@@ -32,13 +36,19 @@ class Bird {
 
 
   copy(){
-    return new Bird(this.soul);
+    return new Bird(this.soul, this.body);
   }
 
   show(){
     fill(255, 100);
     stroke(255);
     ellipse(this.x, this.y, this.r * 2);
+    let index = floor(this.index) % this.len;
+    
+    if(this.body[index])    
+      image(this.body[index], (this.x-96), (this.y-72));
+    
+      this.index += random(0.1, 0.3);
   }
 
   think(pipes){
@@ -74,7 +84,7 @@ class Bird {
   }
 
   bottomTop(){
-    return (this.y > height || this.y < 0);
+    return (this.y > height-10 || this.y < -10);
   }
 
   update(){

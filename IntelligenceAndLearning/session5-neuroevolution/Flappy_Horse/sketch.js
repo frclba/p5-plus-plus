@@ -5,7 +5,7 @@
 *
 */
 
-let totalPopulation = 500;
+let totalPopulation = 333;
 
 let activeBirds = [];
 let allBirds = [];
@@ -18,16 +18,28 @@ let highScoreSpan;
 let allTimeHighScoreSpan;
 let runBestButton;
 
+
+//Sprites Stuff
+let sprtesheet;
+let spritedata;
+let animation = [];
+
+
 let counter = 0;
 let highScore = 0;
 
 let runBest = false;
 
-
+function preload(){
+  spritedata = loadJSON('media/horse.json');
+  spritesheet = loadImage('media/horse.png');
+}
 
 function setup(){
-  let canvas = createCanvas(600, 400);
+  let canvas = createCanvas(windowWidth, 400);
   canvas.parent('canvascontainer');
+  
+  setupSprites();
 
   selectDOMs();
   runBestButton.mousePressed(toggleState);
@@ -35,10 +47,8 @@ function setup(){
   createBirds();
 }
 
-
-
 function draw(){
-  background(0);
+  background(190, 166, 140);
   let cycles = speedSlider.value();
   speedSpan.html(cycles);
 

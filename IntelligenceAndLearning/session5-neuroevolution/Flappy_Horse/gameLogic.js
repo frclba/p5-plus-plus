@@ -1,7 +1,17 @@
 
+function setupSprites(){
+  let frames = spritedata.frames;
+
+  for(let i = 0; i< frames.length; i++){
+    let pos = frames[i].position;
+    let img = spritesheet.get(pos.x, pos.y, pos.w, pos.h);
+    animation.push(img);
+  }
+}
+
 function createBirds(){
   for(let i = 0; i < totalPopulation; i++){
-    let bird = new Bird();
+    let bird = new Bird("", animation);
     activeBirds[i] = bird;
     allBirds[i] = bird;
   }

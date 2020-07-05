@@ -1,15 +1,15 @@
 class Pipe{
   constructor(){
-    let spacing = 125;
+    let spacing = 120;
     let centery = random(spacing, height-spacing);
 
     this.top = centery - spacing / 2;
     this.bottom = height - (centery + spacing / 2);
 
     this.x = width;
-    this.w = 80;
+    this.w = 90;
 
-    this.speed = 6;
+    this.speed = 8;
   }
 
 
@@ -23,7 +23,8 @@ class Pipe{
   }
 
   show(){
-    stroke(255);
+    stroke(0);
+    strokeWeight(3);
     fill(200);
     rect(this.x, 0, this.w, this.top);
     rect(this.x, height - this.bottom, this.w, this.bottom);
