@@ -4,8 +4,8 @@ let symbolSize = 14;
 
 function setup() {
   createCanvas(
-    window.innerWidth,
-    window.innerHeight
+    windowWidth,
+    windowHeight
   );
   background(0);
 
@@ -23,25 +23,25 @@ function setup() {
 
 function draw() {
   background(0, 150);
-  streams.forEach(function(stream) {
+  streams.map(function(stream) {
     stream.render();
   });
 }
 
-function Symbol(x, y, speed, first, opacity) {
-  this.x = x;
-  this.y = y;
-  this.value;
+class Symbol {
+  constructor(x, y, speed, first, opacity) {
+    this.x = x;
+    this.y = y;
+    this.value;
+    this.speed = speed;
+    this.first = first;
+    this.opacity = opacity;
+    this.switchInterval = round(random(2, 25));
+  }
 
-  this.speed = speed;
-  this.first = first;
-  this.opacity = opacity;
-
-  this.switchInterval = round(random(2, 25));
-
-  this.setToRandomSymbol = function() {
+  setToRandomSymbol = function() {
     let charType = round(random(0, 5));
-    if (frameCount % this.switchInterval == 0) {
+    if (frameCount % this.switchInterval === 0) {
       if (charType > 1) {
         // set it to Katakana
         this.value = String.fromCharCode(
@@ -54,22 +54,23 @@ function Symbol(x, y, speed, first, opacity) {
     }
   }
 
-  this.rain = function() {
+  rain = function() {
     this.y = (this.y >= height) ? 0 : this.y += this.speed;
   }
-
 }
 
-function Stream() {
-  this.symbols = [];
-  this.totalSymbols = round(random(5, 35));
-  this.speed = random(5, 22);
+class Stream{
+  constructor(){
+    this.symbols = [];
+    this.totalSymbols = round(random(5, 35));
+    this.speed = random(5, 22);
+  }
 
-  this.generateSymbols = function(x, y) {
+  generateSymbols = function(x, y) {
     let opacity = 255;
     let first = round(random(0, 4)) == 1;
     for (let i =0; i <= this.totalSymbols; i++) {
-      symbol = new Symbol(
+      let symbol = new Symbol(
         x,
         y,
         this.speed,
@@ -84,8 +85,8 @@ function Stream() {
     }
   }
 
-  this.render = function() {
-    this.symbols.forEach(function(symbol) {
+  render = function() {
+    this.symbols.map(function(symbol) {
       if (symbol.first) {
         fill(140, 255, 170, symbol.opacity);
       } else {
