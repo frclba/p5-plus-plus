@@ -7,7 +7,7 @@ var velocityY = [];
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function setup() {
-	createCanvas(999,420);
+	createCanvas(windowWidth,windowHeight);
 	stroke(255);
 	strokeWeight(1);
 	fill(255, 20, 147);
